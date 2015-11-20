@@ -1,9 +1,12 @@
-# MarvelApiClientAndroid
-Marve API Client written in Android.
+# Marvel API Client Java
+========================
+
+Marve API Client written in Java.
 
 Project under development.
 
 License
+-------
 
 Copyright 2015 Karumi
 
