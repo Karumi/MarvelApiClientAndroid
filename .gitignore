@@ -25,5 +25,4 @@ proguard/
 
 # Log Files
 *.log
-MarvelApiClientAndroid.iml
-MarvelApiClient/MarvelApiClient.iml
+*.iml
