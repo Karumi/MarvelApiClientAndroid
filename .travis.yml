@@ -1,4 +1,4 @@
 language: java
 
 script:
-  ./gradlew checkstyle build
+  ./gradlew checkstyle assemble test
