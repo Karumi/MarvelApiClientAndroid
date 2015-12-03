@@ -15,9 +15,13 @@
 
 package com.karumi.marvelapiclient;
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
+import java.io.IOException;
+import retrofit.Call;
 import retrofit.GsonConverterFactory;
+import retrofit.Response;
 import retrofit.Retrofit;
 
 /**
@@ -51,6 +55,38 @@ public class MarvelApiClient {
 
   <T> T getApi(Class<T> apiRest) {
     return apiCall.obtainApi(apiRest);
+  }
+
+  public <T> T execute(Call<T> call) {
+    Response<T> response = null;
+    try {
+      response = call.execute();
+    } catch (IOException e) {
+      throw new MarvelApiException("Network error", e);
+    }
+    if (response.isSuccess()) {
+      return response.body();
+    } else {
+      parseError(response);
+      return null;
+    }
+  }
+
+  private void parseError(Response execute) {
+    String marvelCode = "";
+    String marvelDescription = "";
+    if (execute.errorBody() != null) {
+      Gson gson = new Gson();
+      try {
+        String errorBody = execute.errorBody().string();
+        MarvelError marvelError = gson.fromJson(errorBody, MarvelError.class);
+        marvelCode = marvelError.getCode();
+        marvelDescription = marvelError.getMessage();
+      } catch (IOException e) {
+      }
+    }
+
+    throw new MarvelApiException(execute.code(), marvelCode, marvelDescription, null);
   }
 
   /**

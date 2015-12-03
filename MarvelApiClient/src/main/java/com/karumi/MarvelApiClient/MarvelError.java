@@ -15,25 +15,17 @@
 
 package com.karumi.marvelapiclient;
 
-public class MarvelApiException extends RuntimeException {
-  private final int httpCode;
-  private String marvelCode;
+import com.google.gson.annotations.SerializedName;
 
-  public MarvelApiException(int httpCode, String marvelCode, String description, Throwable cause) {
-    super(description, cause);
-    this.httpCode = httpCode;
-    this.marvelCode = marvelCode;
+class MarvelError {
+  @SerializedName("code") private String code;
+  @SerializedName("message") private String message;
+
+  public String getCode() {
+    return code;
   }
 
-  public MarvelApiException(String message, Throwable cause) {
-    this(-1, "", message, cause);
-  }
-
-  public int getHttpCode() {
-    return httpCode;
-  }
-
-  public String getMarvelCode() {
-    return marvelCode;
+  public String getMessage() {
+    return message;
   }
 }

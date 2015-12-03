@@ -159,7 +159,7 @@ public class CharactersQuery {
       return this;
     }
 
-    public Builder addCommic(int comic) {
+    public Builder addComic(int comic) {
       comics.add(comic);
       return this;
     }
@@ -192,12 +192,12 @@ public class CharactersQuery {
       return this;
     }
 
-    public Builder addStories(int story) {
+    public Builder addStory(int story) {
       stories.add(story);
       return this;
     }
 
-    public Builder addStories(List<Integer> stories) {
+    public Builder addStory(List<Integer> stories) {
       checkNull(stories);
       this.stories.addAll(stories);
       return this;
@@ -275,14 +275,14 @@ public class CharactersQuery {
     }
 
     private String convertToList(List<Integer> list) {
-      String plainList = null;
+      String plainList = "";
       for (int i = 0; i < list.size(); i++) {
         plainList += Integer.toString(list.get(i));
         if (i < list.size() - 1) {
           plainList += LIST_SEPARATOR;
         }
       }
-      return plainList;
+      return (plainList.isEmpty()) ? null : plainList;
     }
   }
 }

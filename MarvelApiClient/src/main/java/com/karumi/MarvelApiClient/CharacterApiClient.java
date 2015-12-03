@@ -18,8 +18,8 @@ package com.karumi.marvelapiclient;
 import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.CharactersQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
-import java.io.IOException;
 import java.util.Map;
+import retrofit.Call;
 
 /**
  * This api give access to marvel Characters. You need a valid {@link MarvelApiClient}
@@ -31,7 +31,7 @@ public class CharacterApiClient {
     this.marvelApiClient = marvelApiClient;
   }
 
-  public MarvelResponse<CharactersDto> getAll(int offset, int limit) throws IOException {
+  public MarvelResponse<CharactersDto> getAll(int offset, int limit) throws MarvelApiException {
     CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
 
     CharactersQuery query =
@@ -39,10 +39,12 @@ public class CharacterApiClient {
     return getAll(query);
   }
 
-  public MarvelResponse<CharactersDto> getAll(CharactersQuery charactersQuery) throws IOException {
+  public MarvelResponse<CharactersDto> getAll(CharactersQuery charactersQuery)
+      throws MarvelApiException {
     CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
 
     Map<String, Object> queryAsMap = charactersQuery.getAsMap();
-    return api.getCharacters(queryAsMap).execute().body();
+    Call<MarvelResponse<CharactersDto>> call = api.getCharacters(queryAsMap);
+    return marvelApiClient.execute(call);
   }
 }

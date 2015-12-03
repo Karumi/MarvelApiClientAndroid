@@ -23,6 +23,7 @@ public class MarvelResponse<T> {
   @SerializedName("copyright") private String copyright;
   @SerializedName("attributionText") private String attributionText;
   @SerializedName("attributionHTML") private String getAttributionHtml;
+  @SerializedName("etag") private String etag;
 
   @SerializedName("data") private T response;
 
@@ -50,6 +51,10 @@ public class MarvelResponse<T> {
     return response;
   }
 
+  public String getEtag() {
+    return etag;
+  }
+
   @Override public String toString() {
     return "MarvelResponse{"
            + "code="
@@ -66,9 +71,11 @@ public class MarvelResponse<T> {
            + ", getAttributionHtml='"
            + getAttributionHtml
            + '\''
+           + ", etag='"
+           + etag
+           + '\''
            + ", response="
            + response
-           +
-           '}';
+           + '}';
   }
 }
