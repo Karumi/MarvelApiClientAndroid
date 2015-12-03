@@ -15,6 +15,7 @@
 
 package com.karumi.marvelapiclient;
 
+import com.karumi.marvelapiclient.model.CharacterDto;
 import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.CharactersQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
@@ -46,5 +47,24 @@ public class CharacterApiClient {
     Map<String, Object> queryAsMap = charactersQuery.getAsMap();
     Call<MarvelResponse<CharactersDto>> call = api.getCharacters(queryAsMap);
     return marvelApiClient.execute(call);
+  }
+
+  public MarvelResponse<CharacterDto> getCharacter(String characterId) {
+    if (characterId == null || "".equals(characterId)) {
+      throw new IllegalArgumentException("The CharacterId must not be null or empty");
+    }
+    CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
+
+    Call<MarvelResponse<CharactersDto>> call = api.getCharacter(characterId);
+    MarvelResponse<CharactersDto> characters = marvelApiClient.execute(call);
+    CharactersDto charactersDto = characters.getResponse();
+    if (charactersDto != null && charactersDto.getCount() > 0) {
+      CharacterDto characterDto = charactersDto.getCharacters().get(0);
+      MarvelResponse<CharacterDto> characterResponse = new MarvelResponse<>(characters);
+      characterResponse.setResponse(characterDto);
+      return characterResponse;
+    } else {
+      throw new MarvelApiException("Character not found", null);
+    }
   }
 }

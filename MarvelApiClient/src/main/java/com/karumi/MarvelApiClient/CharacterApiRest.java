@@ -20,9 +20,13 @@ import com.karumi.marvelapiclient.model.MarvelResponse;
 import java.util.Map;
 import retrofit.Call;
 import retrofit.http.GET;
+import retrofit.http.Path;
 import retrofit.http.QueryMap;
 
 public interface CharacterApiRest {
   @GET("characters") Call<MarvelResponse<CharactersDto>> getCharacters(
       @QueryMap Map<String, Object> characterFilter);
+
+  @GET("characters/{id}") Call<MarvelResponse<CharactersDto>> getCharacter(
+      @Path("id") String characterId);
 }

@@ -82,6 +82,9 @@ public class MarvelApiClient {
         MarvelError marvelError = gson.fromJson(errorBody, MarvelError.class);
         marvelCode = marvelError.getCode();
         marvelDescription = marvelError.getMessage();
+        if (marvelDescription == null || "".equals(marvelDescription)) {
+          marvelDescription = marvelError.getStatus();
+        }
       } catch (IOException e) {
       }
     }

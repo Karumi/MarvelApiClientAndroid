@@ -27,6 +27,18 @@ public class MarvelResponse<T> {
 
   @SerializedName("data") private T response;
 
+  public MarvelResponse() {
+  }
+
+  public MarvelResponse(MarvelResponse marvelResponse) {
+    code = marvelResponse.getCode();
+    status = marvelResponse.getStatus();
+    copyright = marvelResponse.getCopyright();
+    attributionText = marvelResponse.getAttributionText();
+    getAttributionHtml = marvelResponse.getGetAttributionHtml();
+    etag = marvelResponse.getEtag();
+  }
+
   public int getCode() {
     return code;
   }
@@ -77,5 +89,9 @@ public class MarvelResponse<T> {
            + ", response="
            + response
            + '}';
+  }
+
+  public void setResponse(T response) {
+    this.response = response;
   }
 }

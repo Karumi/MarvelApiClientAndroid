@@ -53,6 +53,9 @@ public class CharacterApiClientTest extends ApiClientTest {
   private static final int ANY_EVENT_2 = 2;
   private static final String ANY_MODIFIED_SINCE = "2015-01-09T22:10:45-0800";
   private static final String ORDER_NAME_DESCEDANT_VALUE = "-name";
+  private static final String INVALID_CHARACTER_ID = "";
+  private static final String ANY_NOT_FOUND_ID = "1234";
+  private static final String THREED_MAN_CHARACTER_ID = "123456";
 
   @Test public void shouldReturnAValidUrlWhenICallToGetAllWithValidOffsetAndLimit()
       throws Exception {
@@ -127,44 +130,50 @@ public class CharacterApiClientTest extends ApiClientTest {
     assertEquals(1485, charactersDto.getTotal());
 
     CharacterDto firstCharacter = charactersDto.getCharacters().get(0);
-    assertEquals("1011334", firstCharacter.getId());
-    assertEquals("3-D Man", firstCharacter.getName());
-    assertEquals("3-D man is a 3d superhero", firstCharacter.getDescription());
-    assertEquals("2014-04-29T14:18:17-0400", firstCharacter.getModified());
-    assertEquals("http://gateway.marvel.com/v1/public/characters/1011334",
-        firstCharacter.getResourceUri());
+    assertIs3dManCharacter(firstCharacter);
+  }
 
-    MarvelImage thumbnail = firstCharacter.getThumbnail();
-    assertEquals("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", thumbnail.getPath());
-    assertEquals("jpg", thumbnail.getExtension());
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldReturnAnIllegalExceptionWhenCallGetCharacterWithoutId() throws Exception {
+    CharacterApiClient characterApiClient = givenCharacterApiClient();
 
-    List<MarvelUrl> urls = firstCharacter.getUrls();
-    assertEquals(3, urls.size());
-    MarvelUrl marvelUrl = urls.get(0);
-    assertEquals("detail", marvelUrl.getType());
-    assertEquals("http://marvel.com/characters/74/3-d_man?utm_campaign=apiRef&utm_source="
-                 + "838a08a2f4c39fa3fd218b1b2d43f19a", marvelUrl.getUrl());
+    characterApiClient.getCharacter(INVALID_CHARACTER_ID);
+  }
 
-    MarvelResources<ComicResource> comics = firstCharacter.getComics();
-    assertEquals(11, comics.getAvailable());
-    assertEquals(11, comics.getReturned());
-    assertEquals("http://gateway.marvel.com/v1/public/characters/1011334/comics",
-        comics.getCollectionUri());
-    assertEquals(11, comics.getItems().size());
-    ComicResource firstComic = comics.getItems().get(0);
-    assertEquals("Avengers: The Initiative (2007) #14", firstComic.getName());
-    assertEquals("http://gateway.marvel.com/v1/public/comics/21366", firstComic.getResourceUri());
+  @Test public void shouldReturnAValidUrlWhenGetCharacterHasAValidId() throws Exception {
+    CharacterApiClient characterApiClient = givenCharacterApiClient();
+    enqueueMockResponse("getCharacter.json");
 
-    MarvelResources<StoryResource> stories = firstCharacter.getStories();
-    assertEquals(17, stories.getAvailable());
-    assertEquals(17, stories.getReturned());
-    assertEquals("http://gateway.marvel.com/v1/public/characters/1011334/stories",
-        stories.getCollectionUri());
-    assertEquals(17, stories.getItems().size());
-    StoryResource firstStory = stories.getItems().get(0);
-    assertEquals("Cover #19947", firstStory.getName());
-    assertEquals("http://gateway.marvel.com/v1/public/stories/19947", firstStory.getResourceUri());
-    assertEquals("cover", firstStory.getType());
+    characterApiClient.getCharacter(THREED_MAN_CHARACTER_ID);
+
+    assertRequestSentToContains("characters/" + THREED_MAN_CHARACTER_ID);
+  }
+
+  @Test(expected = MarvelApiException.class)
+  public void shouldReturnMarvelExceptionWhenTheIdDoesNotExist() throws Exception {
+    CharacterApiClient characterApiClient = givenCharacterApiClient();
+    enqueueMockResponse(404, "{\"code\":404,\"status\":\"We couldn't find that character\"}");
+
+    try {
+      characterApiClient.getCharacter(ANY_NOT_FOUND_ID);
+    } catch (MarvelApiException e) {
+      assertEquals("404", e.getMarvelCode());
+      assertEquals("We couldn't find that character", e.getMessage());
+      throw e;
+    }
+  }
+
+  @Test public void shouldReturnAvalidResponseWhenCallGetCharacterWithValidId() throws Exception {
+    CharacterApiClient characterApiClient = givenCharacterApiClient();
+    enqueueMockResponse("getCharacter.json");
+
+    MarvelResponse<CharacterDto> character = characterApiClient.getCharacter(
+        THREED_MAN_CHARACTER_ID);
+
+    assertBasicMarvelResponse(character);
+
+    CharacterDto response = character.getResponse();
+    assertIs3dManCharacter(response);
   }
 
   private List<Integer> getAnyEvents() {
@@ -187,13 +196,54 @@ public class CharacterApiClientTest extends ApiClientTest {
     return new CharacterApiClient(marvelApiClient);
   }
 
+  private void assertIs3dManCharacter(CharacterDto character) {
+    assertEquals("1011334", character.getId());
+    assertEquals("3-D Man", character.getName());
+    assertEquals("3-D man is a 3d superhero", character.getDescription());
+    assertEquals("2014-04-29T14:18:17-0400", character.getModified());
+    assertEquals("http://gateway.marvel.com/v1/public/characters/1011334",
+        character.getResourceUri());
+
+    MarvelImage thumbnail = character.getThumbnail();
+    assertEquals("http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784", thumbnail.getPath());
+    assertEquals("jpg", thumbnail.getExtension());
+
+    List<MarvelUrl> urls = character.getUrls();
+    assertEquals(3, urls.size());
+    MarvelUrl marvelUrl = urls.get(0);
+    assertEquals("detail", marvelUrl.getType());
+    assertEquals("http://marvel.com/characters/74/3-d_man?utm_campaign=apiRef&utm_source="
+                 + "838a08a2f4c39fa3fd218b1b2d43f19a", marvelUrl.getUrl());
+
+    MarvelResources<ComicResource> comics = character.getComics();
+    assertEquals(11, comics.getAvailable());
+    assertEquals(11, comics.getReturned());
+    assertEquals("http://gateway.marvel.com/v1/public/characters/1011334/comics",
+        comics.getCollectionUri());
+    assertEquals(11, comics.getItems().size());
+    ComicResource firstComic = comics.getItems().get(0);
+    assertEquals("Avengers: The Initiative (2007) #14", firstComic.getName());
+    assertEquals("http://gateway.marvel.com/v1/public/comics/21366", firstComic.getResourceUri());
+
+    MarvelResources<StoryResource> stories = character.getStories();
+    assertEquals(17, stories.getAvailable());
+    assertEquals(17, stories.getReturned());
+    assertEquals("http://gateway.marvel.com/v1/public/characters/1011334/stories",
+        stories.getCollectionUri());
+    assertEquals(17, stories.getItems().size());
+    StoryResource firstStory = stories.getItems().get(0);
+    assertEquals("Cover #19947", firstStory.getName());
+    assertEquals("http://gateway.marvel.com/v1/public/stories/19947", firstStory.getResourceUri());
+    assertEquals("cover", firstStory.getType());
+  }
+
   public Date getAnyDate() {
     Calendar instance = Calendar.getInstance();
     instance.setTimeZone(TimeZone.getTimeZone(ANY_TIME_ZONE));
     instance.set(Calendar.YEAR, 2015);
     instance.set(Calendar.MONTH, Calendar.JANUARY);
     instance.set(Calendar.DAY_OF_MONTH, 9);
-    instance.set(Calendar.HOUR, 10);
+    instance.set(Calendar.HOUR_OF_DAY, 22);
     instance.set(Calendar.MINUTE, 10);
     instance.set(Calendar.SECOND, 45);
     return instance.getTime();

@@ -17,24 +17,33 @@ package com.karumi.marvelapiclient.sample;
 
 import com.karumi.marvelapiclient.CharacterApiClient;
 import com.karumi.marvelapiclient.MarvelApiClient;
+import com.karumi.marvelapiclient.model.CharacterDto;
 import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.CharactersQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 
 public class MarveApiClientDemo {
   public static void main(String[] args) {
-    if (args.length < 2) {
-      System.out.println("MarveApiClientDemo [publicKey] [privateKey]");
+    if (args.length < 3) {
+      System.out.println("MarveApiClientDemo [publicKey] [privateKey] [operation]");
     }
     String publicKey = args[0];
     String privateKey = args[1];
+    String operation = args[2];
 
-    //MarvelApiClient marvelApiClient = MarvelApiClient.with(publicKey, privateKey);
     MarvelApiClient marvelApiClient =
         new MarvelApiClient.Builder(publicKey, privateKey).debug().build();
-    CharacterApiClient characterApiClient = new CharacterApiClient(marvelApiClient);
-    CharactersQuery spider = CharactersQuery.Builder.create().withOffset(0).withLimit(10).build();
-    MarvelResponse<CharactersDto> all = characterApiClient.getAll(spider);
-    System.out.println(all.toString());
+
+    if (operation.equals("getCharacters")) {
+      CharacterApiClient characterApiClient = new CharacterApiClient(marvelApiClient);
+      CharactersQuery spider = CharactersQuery.Builder.create().withOffset(0).withLimit(10).build();
+      MarvelResponse<CharactersDto> all = characterApiClient.getAll(spider);
+      System.out.println(all.toString());
+    } else if (operation.equals("getCharacter")) {
+      CharacterApiClient characterApiClient = new CharacterApiClient(marvelApiClient);
+      MarvelResponse<CharacterDto> character = characterApiClient.getCharacter("1011334");
+      System.out.println(character.toString());
+
+    }
   }
 }
