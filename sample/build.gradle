@@ -4,9 +4,10 @@ sourceCompatibility = 1.7
 
 repositories {
     mavenCentral()
+    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile ':MarvelApiClient'
+    compile project(':MarvelApiClient')
 }

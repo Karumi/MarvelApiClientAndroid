@@ -33,8 +33,6 @@ public class CharacterApiClient {
   }
 
   public MarvelResponse<CharactersDto> getAll(int offset, int limit) throws MarvelApiException {
-    CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
-
     CharactersQuery query =
         CharactersQuery.Builder.create().withOffset(offset).withLimit(limit).build();
     return getAll(query);

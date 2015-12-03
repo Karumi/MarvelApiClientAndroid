@@ -39,7 +39,7 @@ class GlobalKeyParams implements Interceptor {
   }
 
   @Override public Response intercept(Chain chain) throws IOException {
-    String timestamp = String.valueOf(System.currentTimeMillis());
+    String timestamp = String.valueOf(timeProvider.currentTimeMillis());
     String hash = null;
     try {
       hash = hashGenerator.generateHash(timestamp, publicKey, privateKey);

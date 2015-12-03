@@ -44,11 +44,7 @@ public class MarvelApiClient {
 
   public static MarvelApiClient with(String publicKey, String privateKey) {
     if (singleton == null) {
-      synchronized (MarvelApiClient.class) {
-        if (singleton == null) {
-          singleton = new Builder(publicKey, privateKey).build();
-        }
-      }
+      singleton = new Builder(publicKey, privateKey).build();
     }
     return singleton;
   }
