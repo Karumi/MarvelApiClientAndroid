@@ -29,6 +29,7 @@ import retrofit.Retrofit;
  */
 public class MarvelApiClient {
 
+  private static final int INVALID_AUTH_CODE = 401;
   private static MarvelApiClient singleton;
   private final String publicKey;
   private final String privateKey;
@@ -85,7 +86,11 @@ public class MarvelApiClient {
       }
     }
 
-    throw new MarvelApiException(execute.code(), marvelCode, marvelDescription, null);
+    if(execute.code() == INVALID_AUTH_CODE) {
+      throw new MarvelAuthApiException(execute.code(), marvelCode, marvelDescription, null);
+    } else {
+      throw new MarvelApiException(execute.code(), marvelCode, marvelDescription, null);
+    }
   }
 
   /**

@@ -56,11 +56,12 @@ public class CharacterApiClientTest extends ApiClientTest {
   private static final String INVALID_CHARACTER_ID = "";
   private static final String ANY_NOT_FOUND_ID = "1234";
   private static final String THREED_MAN_CHARACTER_ID = "123456";
+  public static final String COMICS_REQUEST = "1,2";
+  public static final String EVENTS_REQUEST = "1,2";
 
-  @Test public void shouldReturnAValidUrlWhenICallToGetAllWithValidOffsetAndLimit()
-      throws Exception {
+  @Test public void shouldRequestCharactersByOffsetAndLimitWithAsParams() throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
-    enqueueMockResponse(200);
+    enqueueMockResponse();
 
     characterApiClient.getAll(ANY_OFFSET, ANY_LIMIT);
 
@@ -70,14 +71,14 @@ public class CharacterApiClientTest extends ApiClientTest {
   @Test(expected = IllegalArgumentException.class) public void shouldThrowExceptionWhenLimitIsZero()
       throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
-    enqueueMockResponse(200);
+    enqueueMockResponse();
 
     characterApiClient.getAll(ANY_OFFSET, INVALID_LIMIT);
   }
 
-  @Test public void shouldReturnValidUrlWhenICallToGetAllWithBuilder() throws Exception {
+  @Test public void shouldRequestCharactersUsingAllTheRequestParams() throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
-    enqueueMockResponse(200);
+    enqueueMockResponse();
 
     CharactersQuery query = CharactersQuery.Builder.create()
         .withName(ANY_NAME)
@@ -96,12 +97,12 @@ public class CharacterApiClientTest extends ApiClientTest {
 
     assertRequestSentToContains("offset=" + ANY_OFFSET, "limit=" + ANY_LIMIT, "name=" + ANY_NAME,
         "nameStartsWith=" + ANY_START_NAME, "modifiedSince=" + ANY_MODIFIED_SINCE,
-        "orderBy=" + ORDER_NAME_DESCEDANT_VALUE, "comics=1,2", "events=1,2", "series=1",
-        "stories=1");
+        "orderBy=" + ORDER_NAME_DESCEDANT_VALUE, "comics=" + COMICS_REQUEST,
+        "events=" + EVENTS_REQUEST, "series=" + ANY_SERIE, "stories=" + ANY_STORY);
   }
 
-  @Test(expected = MarvelApiException.class) public void shouldThrowExceptionWhenApiReturnAnError()
-      throws Exception {
+  @Test(expected = MarvelAuthApiException.class)
+  public void shouldThrowMarvelApiExceptionOnAuthHttpError() throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
     enqueueMockResponse(401,
         "{\"code\":\"InvalidCredentials\",\"message\":\"That hash, timestamp and key "
@@ -116,31 +117,24 @@ public class CharacterApiClientTest extends ApiClientTest {
     }
   }
 
-  @Test public void shouldReturnAValidResponseWhenCallGetAll() throws Exception {
+  @Test public void shouldParseGetAllCharactersResponse() throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
     enqueueMockResponse("getCharacters.json");
 
     MarvelResponse<CharactersDto> characters = characterApiClient.getAll(0, ANY_LIMIT);
 
     assertBasicMarvelResponse(characters);
-    CharactersDto charactersDto = characters.getResponse();
-    assertEquals(10, charactersDto.getCount());
-    assertEquals(10, charactersDto.getLimit());
-    assertEquals(0, charactersDto.getOffset());
-    assertEquals(1485, charactersDto.getTotal());
-
-    CharacterDto firstCharacter = charactersDto.getCharacters().get(0);
-    assertIs3dManCharacter(firstCharacter);
+    assertGetAllCharactersResponseIsProperlyParsed(characters);
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void shouldReturnAnIllegalExceptionWhenCallGetCharacterWithoutId() throws Exception {
+  @Test(expected = IllegalArgumentException.class) public void shouldNotAcceptEmptyCharacterIds()
+      throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
 
     characterApiClient.getCharacter(INVALID_CHARACTER_ID);
   }
 
-  @Test public void shouldReturnAValidUrlWhenGetCharacterHasAValidId() throws Exception {
+  @Test public void shouldSendGetCharacterRequestToTheCorrectEndpoint() throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
     enqueueMockResponse("getCharacter.json");
 
@@ -163,12 +157,12 @@ public class CharacterApiClientTest extends ApiClientTest {
     }
   }
 
-  @Test public void shouldReturnAvalidResponseWhenCallGetCharacterWithValidId() throws Exception {
+  @Test public void shouldParseGetCharacterResponse() throws Exception {
     CharacterApiClient characterApiClient = givenCharacterApiClient();
     enqueueMockResponse("getCharacter.json");
 
-    MarvelResponse<CharacterDto> character = characterApiClient.getCharacter(
-        THREED_MAN_CHARACTER_ID);
+    MarvelResponse<CharacterDto> character =
+        characterApiClient.getCharacter(THREED_MAN_CHARACTER_ID);
 
     assertBasicMarvelResponse(character);
 
@@ -194,6 +188,18 @@ public class CharacterApiClientTest extends ApiClientTest {
             .retrofit(retrofit)
             .build();
     return new CharacterApiClient(marvelApiClient);
+  }
+
+  private void assertGetAllCharactersResponseIsProperlyParsed(
+      MarvelResponse<CharactersDto> characters) {
+    CharactersDto charactersDto = characters.getResponse();
+    assertEquals(10, charactersDto.getCount());
+    assertEquals(10, charactersDto.getLimit());
+    assertEquals(0, charactersDto.getOffset());
+    assertEquals(1485, charactersDto.getTotal());
+
+    CharacterDto firstCharacter = charactersDto.getCharacters().get(0);
+    assertIs3dManCharacter(firstCharacter);
   }
 
   private void assertIs3dManCharacter(CharacterDto character) {

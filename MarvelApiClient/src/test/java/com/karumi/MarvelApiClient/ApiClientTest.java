@@ -34,6 +34,7 @@ import static org.hamcrest.core.StringContains.containsString;
 public class ApiClientTest {
   private static final String FILE_ENCONDING = "UTF-8";
   protected static final String ANY_TIME_ZONE = "PST";
+  private static final int OK_CODE = 200;
 
   private MockWebServer server;
 
@@ -46,6 +47,13 @@ public class ApiClientTest {
 
   @After public void tearDown() throws Exception {
     server.shutdown();
+  }
+
+  protected void enqueueMockResponse() throws IOException {
+    MockResponse mockResponse = new MockResponse();
+    mockResponse.setResponseCode(OK_CODE);
+    mockResponse.setBody("{}");
+    server.enqueue(mockResponse);
   }
 
   protected void enqueueMockResponse(int code) throws IOException {

@@ -60,7 +60,7 @@ public class CharactersQuery {
     this.offset = offset;
   }
 
-  public Map<String, Object> getAsMap() {
+  public Map<String, Object> toMap() {
     Map<String, Object> returnValues = new HashMap<>();
 
     if (name != null) {

@@ -22,15 +22,15 @@ class MarvelError {
   @SerializedName("message") private String message;
   @SerializedName("status") private String status = "";
 
-  public String getCode() {
+  String getCode() {
     return code;
   }
 
-  public String getMessage() {
+  String getMessage() {
     return message;
   }
 
-  public String getStatus() {
+  String getStatus() {
     return status;
   }
 }

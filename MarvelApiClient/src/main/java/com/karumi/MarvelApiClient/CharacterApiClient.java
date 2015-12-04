@@ -42,7 +42,7 @@ public class CharacterApiClient {
       throws MarvelApiException {
     CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
 
-    Map<String, Object> queryAsMap = charactersQuery.getAsMap();
+    Map<String, Object> queryAsMap = charactersQuery.toMap();
     Call<MarvelResponse<CharactersDto>> call = api.getCharacters(queryAsMap);
     return marvelApiClient.execute(call);
   }
