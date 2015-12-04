@@ -19,7 +19,6 @@ sourceCompatibility = 1.7
 
 repositories {
     mavenCentral()
-    maven { url 'http://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
@@ -31,6 +30,6 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
-    compile 'com.squareup.okhttp:logging-interceptor:2.7.0-SNAPSHOT'
+    compile 'com.squareup.okhttp:logging-interceptor:2.6.0'
 
 }
