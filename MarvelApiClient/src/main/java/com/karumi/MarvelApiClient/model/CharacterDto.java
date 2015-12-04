@@ -27,10 +27,10 @@ public class CharacterDto {
   @SerializedName("resourceURI") private String resourceUri;
   @SerializedName("urls") private List<MarvelUrl> urls;
   @SerializedName("thumbnail") private MarvelImage thumbnail;
-  @SerializedName("comics") private MarvelResources<ComicResource> comics;
-  @SerializedName("stories") private MarvelResources<StoryResource> stories;
-  @SerializedName("events") private MarvelResources<EventResource> events;
-  @SerializedName("series") private MarvelResources<SerieResource> series;
+  @SerializedName("comics") private MarvelResources<ComicResourceDto> comics;
+  @SerializedName("stories") private MarvelResources<StoryResourceDto> stories;
+  @SerializedName("events") private MarvelResources<EventResourceDto> events;
+  @SerializedName("series") private MarvelResources<SerieResourceDto> series;
 
   public String getId() {
     return id;
@@ -60,19 +60,19 @@ public class CharacterDto {
     return thumbnail;
   }
 
-  public MarvelResources<ComicResource> getComics() {
+  public MarvelResources<ComicResourceDto> getComics() {
     return comics;
   }
 
-  public MarvelResources<StoryResource> getStories() {
+  public MarvelResources<StoryResourceDto> getStories() {
     return stories;
   }
 
-  public MarvelResources<EventResource> getEvents() {
+  public MarvelResources<EventResourceDto> getEvents() {
     return events;
   }
 
-  public MarvelResources<SerieResource> getSeries() {
+  public MarvelResources<SerieResourceDto> getSeries() {
     return series;
   }
 

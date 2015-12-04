@@ -17,23 +17,26 @@ package com.karumi.marvelapiclient.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class StoryResource extends MarvelResource {
-  @SerializedName("type") private String type;
+public class MarvelResourceDto {
+  @SerializedName("resourceURI") private String resourceUri;
+  @SerializedName("name") private String name;
 
-  public String getType() {
-    return type;
+  public String getResourceUri() {
+    return resourceUri;
+  }
+
+  public String getName() {
+    return name;
   }
 
   @Override public String toString() {
-    return "StoryResource{"
-           + "name="
-           + super.getName()
-           + "resourceUri="
-           + super.getResourceUri()
-           + "type='"
-           + type
+    return "MarvelResourceDto{"
+           + "resourceUri='"
+           + resourceUri
            + '\''
-           +
-           '}';
+           + ", name='"
+           + name
+           + '\''
+           + '}';
   }
 }

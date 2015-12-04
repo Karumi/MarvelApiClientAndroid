@@ -15,5 +15,5 @@
 
 package com.karumi.marvelapiclient.model;
 
-public class EventResource extends MarvelResource {
+public class ComicResourceDto extends MarvelResourceDto {
 }

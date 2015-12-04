@@ -15,5 +15,5 @@
 
 package com.karumi.marvelapiclient.model;
 
-public class ComicResource extends MarvelResource {
+public class SerieResourceDto extends MarvelResourceDto {
 }

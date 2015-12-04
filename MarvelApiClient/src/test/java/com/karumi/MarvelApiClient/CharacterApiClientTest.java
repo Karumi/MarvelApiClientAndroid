@@ -18,12 +18,12 @@ package com.karumi.marvelapiclient;
 import com.karumi.marvelapiclient.model.CharacterDto;
 import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.CharactersQuery;
-import com.karumi.marvelapiclient.model.ComicResource;
+import com.karumi.marvelapiclient.model.ComicResourceDto;
 import com.karumi.marvelapiclient.model.MarvelImage;
 import com.karumi.marvelapiclient.model.MarvelResources;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.karumi.marvelapiclient.model.MarvelUrl;
-import com.karumi.marvelapiclient.model.StoryResource;
+import com.karumi.marvelapiclient.model.StoryResourceDto;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -215,23 +215,23 @@ public class CharacterApiClientTest extends ApiClientTest {
     assertEquals("http://marvel.com/characters/74/3-d_man?utm_campaign=apiRef&utm_source="
                  + "838a08a2f4c39fa3fd218b1b2d43f19a", marvelUrl.getUrl());
 
-    MarvelResources<ComicResource> comics = character.getComics();
+    MarvelResources<ComicResourceDto> comics = character.getComics();
     assertEquals(11, comics.getAvailable());
     assertEquals(11, comics.getReturned());
     assertEquals("http://gateway.marvel.com/v1/public/characters/1011334/comics",
         comics.getCollectionUri());
     assertEquals(11, comics.getItems().size());
-    ComicResource firstComic = comics.getItems().get(0);
+    ComicResourceDto firstComic = comics.getItems().get(0);
     assertEquals("Avengers: The Initiative (2007) #14", firstComic.getName());
     assertEquals("http://gateway.marvel.com/v1/public/comics/21366", firstComic.getResourceUri());
 
-    MarvelResources<StoryResource> stories = character.getStories();
+    MarvelResources<StoryResourceDto> stories = character.getStories();
     assertEquals(17, stories.getAvailable());
     assertEquals(17, stories.getReturned());
     assertEquals("http://gateway.marvel.com/v1/public/characters/1011334/stories",
         stories.getCollectionUri());
     assertEquals(17, stories.getItems().size());
-    StoryResource firstStory = stories.getItems().get(0);
+    StoryResourceDto firstStory = stories.getItems().get(0);
     assertEquals("Cover #19947", firstStory.getName());
     assertEquals("http://gateway.marvel.com/v1/public/stories/19947", firstStory.getResourceUri());
     assertEquals("cover", firstStory.getType());

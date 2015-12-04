@@ -15,20 +15,22 @@
 
 package com.karumi.marvelapiclient;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import org.junit.Test;
 
-class HashGenerator {
-  public String generateHash(String timestamp, String publicKey, String privateKey)
-      throws NoSuchAlgorithmException {
-    String value = timestamp + privateKey + publicKey;
-    MessageDigest mdEnc = MessageDigest.getInstance("MD5");
-    byte[] md5Bytes = mdEnc.digest(value.getBytes());
+import static org.junit.Assert.assertEquals;
 
-    StringBuffer md5 = new StringBuffer();
-    for (int i = 0; i < md5Bytes.length; ++i) {
-      md5.append(Integer.toHexString((md5Bytes[i] & 0xFF) | 0x100).substring(1, 3));
-    }
-    return md5.toString();
+public class AuthHashGeneratorTest {
+
+  public static final String ANY_TIMESTAMP = "1";
+  public static final String ANY_PUBLIC_KEY = "1234";
+  public static final String ANY_PRIVATE_KEY = "abcd";
+  public static final String VALID_MD5 = "ffd275c5130566a2916217b101f26150";
+
+  @Test public void shouldProvideAValidMd5WhenGiveValidValues() throws Exception {
+    AuthHashGenerator authHashGenerator = new AuthHashGenerator();
+
+    String md5 = authHashGenerator.generateHash(ANY_TIMESTAMP, ANY_PUBLIC_KEY, ANY_PRIVATE_KEY);
+
+    assertEquals(VALID_MD5, md5);
   }
 }

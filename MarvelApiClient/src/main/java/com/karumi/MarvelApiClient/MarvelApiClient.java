@@ -93,13 +93,13 @@ public class MarvelApiClient {
    */
   @SuppressWarnings("UnusedDeclaration") public static class Builder {
 
-    private static final String MARVEL_URL = "http://gateway.marvel.com/v1/public/";
+    private static final String MARVEL_API_BASE_URL = "http://gateway.marvel.com/v1/public/";
     private final String privateKey;
     private final String publicKey;
     private boolean debug;
     private Retrofit retrofit;
-    private String baseUrl = MARVEL_URL;
-    private TimeProvider timeProvider;
+    private String baseUrl = MARVEL_API_BASE_URL;
+    private TimeProvider timeProvider = new TimeProvider();
 
     public Builder(String publicKey, String privateKey) {
       if (publicKey == null) {
@@ -132,21 +132,9 @@ public class MarvelApiClient {
       return this;
     }
 
-    public Builder timeProvider(TimeProvider timeProvider) {
-      if (timeProvider == null) {
-        throw new IllegalArgumentException("timeProvider must not be null");
-      }
-      this.timeProvider = timeProvider;
-      return this;
-    }
-
     public MarvelApiClient build() {
       if (retrofit == null) {
         retrofit = createDefaultRetrofit(baseUrl, debug);
-      }
-
-      if (timeProvider == null) {
-        timeProvider = new SystemTimeProvider();
       }
 
       addKeysToParams(retrofit, publicKey, privateKey, timeProvider);
@@ -157,7 +145,7 @@ public class MarvelApiClient {
     private void addKeysToParams(Retrofit retrofit, String publicKey, String privateKey,
         TimeProvider timeProvider) {
       OkHttpClient client = retrofit.client();
-      client.interceptors().add(new GlobalKeyParams(publicKey, privateKey, timeProvider));
+      client.interceptors().add(new AuthInterceptor(publicKey, privateKey, timeProvider));
     }
 
     private Retrofit createDefaultRetrofit(String baseUrl, boolean debug) {

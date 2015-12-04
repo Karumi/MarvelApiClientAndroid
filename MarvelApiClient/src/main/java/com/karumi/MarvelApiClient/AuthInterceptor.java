@@ -20,9 +20,8 @@ import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
-class GlobalKeyParams implements Interceptor {
+class AuthInterceptor implements Interceptor {
   private static final String TIMESTAMP_KEY = "ts";
   private static final String HASH_KEY = "hash";
   private static final String APIKEY_KEY = "apikey";
@@ -30,9 +29,9 @@ class GlobalKeyParams implements Interceptor {
   private final String publicKey;
   private final String privateKey;
   private final TimeProvider timeProvider;
-  private final HashGenerator hashGenerator = new HashGenerator();
+  private final AuthHashGenerator authHashGenerator = new AuthHashGenerator();
 
-  public GlobalKeyParams(String publicKey, String privateKey, TimeProvider timeProvider) {
+  AuthInterceptor(String publicKey, String privateKey, TimeProvider timeProvider) {
     this.publicKey = publicKey;
     this.privateKey = privateKey;
     this.timeProvider = timeProvider;
@@ -41,11 +40,7 @@ class GlobalKeyParams implements Interceptor {
   @Override public Response intercept(Chain chain) throws IOException {
     String timestamp = String.valueOf(timeProvider.currentTimeMillis());
     String hash = null;
-    try {
-      hash = hashGenerator.generateHash(timestamp, publicKey, privateKey);
-    } catch (NoSuchAlgorithmException e) {
-      throw new MarvelApiException("cannot generate the api key", e);
-    }
+    hash = authHashGenerator.generateHash(timestamp, publicKey, privateKey);
     Request request = chain.request();
     HttpUrl url = request.httpUrl()
         .newBuilder()

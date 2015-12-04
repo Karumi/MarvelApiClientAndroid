@@ -15,6 +15,8 @@
 
 package com.karumi.marvelapiclient;
 
-public interface TimeProvider {
-  long currentTimeMillis();
+ class TimeProvider {
+  long currentTimeMillis() {
+    return System.currentTimeMillis();
+  }
 }

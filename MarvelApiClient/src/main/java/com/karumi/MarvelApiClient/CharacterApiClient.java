@@ -23,7 +23,7 @@ import java.util.Map;
 import retrofit.Call;
 
 /**
- * This api give access to marvel Characters. You need a valid {@link MarvelApiClient}
+ * Retrieves Character information given a  {@link CharactersQuery} or some simple params like the character id. A valid {@link MarvelApiClient} is needed.
  */
 public class CharacterApiClient {
   private final MarvelApiClient marvelApiClient;
@@ -48,7 +48,7 @@ public class CharacterApiClient {
   }
 
   public MarvelResponse<CharacterDto> getCharacter(String characterId) {
-    if (characterId == null || "".equals(characterId)) {
+    if (characterId == null || characterId.isEmpty()) {
       throw new IllegalArgumentException("The CharacterId must not be null or empty");
     }
     CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
