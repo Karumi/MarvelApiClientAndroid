@@ -53,7 +53,7 @@ public class MarvelApiClient {
     return apiCall.obtainApi(apiRest);
   }
 
-  public <T> T execute(Call<T> call) {
+  public <T> T execute(Call<T> call) throws MarvelApiException {
     Response<T> response = null;
     try {
       response = call.execute();
@@ -68,7 +68,7 @@ public class MarvelApiClient {
     }
   }
 
-  private void parseError(Response execute) {
+  private void parseError(Response execute) throws MarvelApiException {
     String marvelCode = "";
     String marvelDescription = "";
     if (execute.errorBody() != null) {

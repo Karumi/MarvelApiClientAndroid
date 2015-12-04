@@ -40,7 +40,11 @@ class AuthInterceptor implements Interceptor {
   @Override public Response intercept(Chain chain) throws IOException {
     String timestamp = String.valueOf(timeProvider.currentTimeMillis());
     String hash = null;
-    hash = authHashGenerator.generateHash(timestamp, publicKey, privateKey);
+    try {
+      hash = authHashGenerator.generateHash(timestamp, publicKey, privateKey);
+    } catch (MarvelApiException e) {
+      e.printStackTrace();
+    }
     Request request = chain.request();
     HttpUrl url = request.httpUrl()
         .newBuilder()

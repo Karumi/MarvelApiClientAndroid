@@ -19,7 +19,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 class AuthHashGenerator {
-  String generateHash(String timestamp, String publicKey, String privateKey) {
+  String generateHash(String timestamp, String publicKey, String privateKey)
+      throws MarvelApiException {
     try {
       String value = timestamp + privateKey + publicKey;
       MessageDigest md5Encoder = MessageDigest.getInstance("MD5");

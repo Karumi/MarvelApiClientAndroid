@@ -15,7 +15,7 @@
 
 package com.karumi.marvelapiclient;
 
-public class MarvelApiException extends RuntimeException {
+public class MarvelApiException extends Exception {
   private final int httpCode;
   private String marvelCode;
 

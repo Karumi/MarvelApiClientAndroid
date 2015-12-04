@@ -47,7 +47,7 @@ public class CharacterApiClient {
     return marvelApiClient.execute(call);
   }
 
-  public MarvelResponse<CharacterDto> getCharacter(String characterId) {
+  public MarvelResponse<CharacterDto> getCharacter(String characterId) throws MarvelApiException {
     if (characterId == null || characterId.isEmpty()) {
       throw new IllegalArgumentException("The CharacterId must not be null or empty");
     }
