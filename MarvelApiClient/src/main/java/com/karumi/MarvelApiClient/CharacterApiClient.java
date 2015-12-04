@@ -23,13 +23,13 @@ import java.util.Map;
 import retrofit.Call;
 
 /**
- * Retrieves Character information given a  {@link CharactersQuery} or some simple params like the character id. A valid {@link MarvelApiClient} is needed.
+ * Retrieves Character information given a  {@link CharactersQuery} or some simple params like the
+ * character id. A valid {@link MarvelApiConfig} is needed.
  */
-public class CharacterApiClient {
-  private final MarvelApiClient marvelApiClient;
+public class CharacterApiClient extends MarvelApiClient {
 
-  public CharacterApiClient(MarvelApiClient marvelApiClient) {
-    this.marvelApiClient = marvelApiClient;
+  public CharacterApiClient(MarvelApiConfig marvelApiConfig) {
+    super(marvelApiConfig);
   }
 
   public MarvelResponse<CharactersDto> getAll(int offset, int limit) throws MarvelApiException {
@@ -40,21 +40,21 @@ public class CharacterApiClient {
 
   public MarvelResponse<CharactersDto> getAll(CharactersQuery charactersQuery)
       throws MarvelApiException {
-    CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
+    CharacterApiRest api = getApi(CharacterApiRest.class);
 
     Map<String, Object> queryAsMap = charactersQuery.toMap();
     Call<MarvelResponse<CharactersDto>> call = api.getCharacters(queryAsMap);
-    return marvelApiClient.execute(call);
+    return execute(call);
   }
 
   public MarvelResponse<CharacterDto> getCharacter(String characterId) throws MarvelApiException {
     if (characterId == null || characterId.isEmpty()) {
       throw new IllegalArgumentException("The CharacterId must not be null or empty");
     }
-    CharacterApiRest api = marvelApiClient.getApi(CharacterApiRest.class);
+    CharacterApiRest api = getApi(CharacterApiRest.class);
 
     Call<MarvelResponse<CharactersDto>> call = api.getCharacter(characterId);
-    MarvelResponse<CharactersDto> characters = marvelApiClient.execute(call);
+    MarvelResponse<CharactersDto> characters = execute(call);
     CharactersDto charactersDto = characters.getResponse();
     if (charactersDto != null && charactersDto.getCount() > 0) {
       CharacterDto characterDto = charactersDto.getCharacters().get(0);

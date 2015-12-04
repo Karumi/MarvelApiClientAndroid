@@ -183,11 +183,11 @@ public class CharacterApiClientTest extends ApiClientTest {
         .addConverterFactory(GsonConverterFactory.create())
         .build();
 
-    MarvelApiClient marvelApiClient =
-        new MarvelApiClient.Builder(ANY_PUBLIC_KEY, ANY_PRIVATE_KEY).baseUrl(ANY_URL)
+    MarvelApiConfig marvelApiConfig =
+        new MarvelApiConfig.Builder(ANY_PUBLIC_KEY, ANY_PRIVATE_KEY).baseUrl(ANY_URL)
             .retrofit(retrofit)
             .build();
-    return new CharacterApiClient(marvelApiClient);
+    return new CharacterApiClient(marvelApiConfig);
   }
 
   private void assertGetAllCharactersResponseIsProperlyParsed(
