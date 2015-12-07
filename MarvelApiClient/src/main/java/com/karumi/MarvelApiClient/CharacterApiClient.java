@@ -26,7 +26,7 @@ import retrofit.Call;
  * Retrieves Character information given a  {@link CharactersQuery} or some simple params like the
  * character id. A valid {@link MarvelApiConfig} is needed.
  */
-public class CharacterApiClient extends MarvelApiClient {
+public final class CharacterApiClient extends MarvelApiClient {
 
   public CharacterApiClient(MarvelApiConfig marvelApiConfig) {
     super(marvelApiConfig);
