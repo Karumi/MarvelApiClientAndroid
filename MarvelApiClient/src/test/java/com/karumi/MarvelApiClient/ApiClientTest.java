@@ -32,7 +32,7 @@ import static junit.framework.Assert.assertEquals;
 import static org.hamcrest.core.StringContains.containsString;
 
 public class ApiClientTest {
-  private static final String FILE_ENCONDING = "UTF-8";
+  private static final String FILE_ENCODING = "UTF-8";
   protected static final String ANY_TIME_ZONE = "PST";
   private static final int OK_CODE = 200;
 
@@ -50,17 +50,11 @@ public class ApiClientTest {
   }
 
   protected void enqueueMockResponse() throws IOException {
-    MockResponse mockResponse = new MockResponse();
-    mockResponse.setResponseCode(OK_CODE);
-    mockResponse.setBody("{}");
-    server.enqueue(mockResponse);
+    enqueueMockResponse(OK_CODE);
   }
 
   protected void enqueueMockResponse(int code) throws IOException {
-    MockResponse mockResponse = new MockResponse();
-    mockResponse.setResponseCode(code);
-    mockResponse.setBody("{}");
-    server.enqueue(mockResponse);
+    enqueueMockResponse(OK_CODE, "{}");
   }
 
   protected void enqueueMockResponse(int code, String response) throws IOException {
@@ -107,7 +101,7 @@ public class ApiClientTest {
   private String getContentFromFile(String fileName) throws IOException {
     fileName = getClass().getResource("/" + fileName).getFile();
     File file = new File(fileName);
-    List<String> lines = FileUtils.readLines(file, FILE_ENCONDING);
+    List<String> lines = FileUtils.readLines(file, FILE_ENCODING);
     StringBuilder stringBuilder = new StringBuilder();
     for (String line : lines) {
       stringBuilder.append(line);
