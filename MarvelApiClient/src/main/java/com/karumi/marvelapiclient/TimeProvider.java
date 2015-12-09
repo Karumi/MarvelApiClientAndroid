@@ -13,5 +13,10 @@
  *   limitations under the License.
  */
 
-include 'MarvelApiClient', 'sample'
+package com.karumi.marvelapiclient;
 
+ class TimeProvider {
+  long currentTimeMillis() {
+    return System.currentTimeMillis();
+  }
+}

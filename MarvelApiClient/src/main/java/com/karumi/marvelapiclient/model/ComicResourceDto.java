@@ -13,5 +13,7 @@
  *   limitations under the License.
  */
 
-include 'MarvelApiClient', 'sample'
+package com.karumi.marvelapiclient.model;
 
+public class ComicResourceDto extends MarvelResourceDto {
+}

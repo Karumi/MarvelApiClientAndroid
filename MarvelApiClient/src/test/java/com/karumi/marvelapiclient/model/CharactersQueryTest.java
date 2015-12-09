@@ -1,0 +1,59 @@
+/*
+ *   Copyright (C) 2015 Karumi.
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ */
+
+package com.karumi.marvelapiclient.model;
+
+import org.junit.Test;
+
+public class CharactersQueryTest {
+  private static final int INVALID_LIMIT = 0;
+  private static final int INVALID_OFFSET = -1;
+  private static final int LIMIT_BIGGET_THAN_MAX = 101;
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenSetInvalidOffset() throws Exception {
+    CharactersQuery.Builder.create().withOffset(INVALID_OFFSET).build();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenSetLimitEqualZero() throws Exception {
+    CharactersQuery.Builder.create().withLimit(INVALID_LIMIT).build();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenSetLimitMoreThanMaxLimit() throws Exception {
+    CharactersQuery.Builder.create().withLimit(LIMIT_BIGGET_THAN_MAX).build();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+     public void shouldThrowExceptionWhenAddNullComics() throws Exception {
+    CharactersQuery.Builder.create().addComics(null).build();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenAddNullEvents() throws Exception {
+    CharactersQuery.Builder.create().addEvents(null).build();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenAddNullSeries() throws Exception {
+    CharactersQuery.Builder.create().addSeries(null).build();
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenAddNullStories() throws Exception {
+    CharactersQuery.Builder.create().addStory(null).build();
+  }
+}
