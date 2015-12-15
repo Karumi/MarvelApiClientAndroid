@@ -1,7 +1,7 @@
 # Marvel API Client Java
 ========================
 
-Marve API Client written in Java.
+Marvel API Client written in Java.
 
 Project under development.
 
