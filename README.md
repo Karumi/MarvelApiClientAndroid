@@ -1,4 +1,4 @@
-Marvel Api Client written in Java [![Build Status](https://travis-ci.org/Karumi/MarvelApiClientAndroid.svg?branch=master)](https://travis-ci.org/Karumi/MarvelApiClientAndroid)
+Marvel Api Client written in Java [![Build Status](https://travis-ci.org/Karumi/MarvelApiClientAndroid.svg?branch=master)](https://travis-ci.org/Karumi/MarvelApiClientAndroid) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.karumi/marvelapiclientandroid/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.karumi/marvelapiclientandroid)
 ==========================
 
 
