@@ -1,15 +1,15 @@
-Marvel Api Client for Java [![Build Status](https://travis-ci.org/Karumi/MarvelApiClientAndroid.svg?branch=master)](https://travis-ci.org/Karumi/MarvelApiClientAndroid)
+Marvel Api Client written in Java [![Build Status](https://travis-ci.org/Karumi/MarvelApiClientAndroid.svg?branch=master)](https://travis-ci.org/Karumi/MarvelApiClientAndroid)
 ==========================
 
 
-This is an implementation in Java for the Mavel Api. This library works with Java 7 and it is compatible with Android.
+This is an implementation written in Java for the [Mavel Api][marvelApi]. This library is implemented using Java 7 and it is fully compatible with Android.
 
 **IMPORTANT**: This library is under development.
 
 Usage
 -----
 
-**Prerequisites**: You need obtain valid Marvel keys for use this library. You can obtain it from [Marvel] [1]  
+**Prerequisites**: You need to obtain valid Marvel keys for using this library. You can obtain it from [Marvel] [marvelAuthorization]  
 
 To start using the library you just need to create a valid MarvelApiConfiguration:
 
@@ -17,11 +17,11 @@ To start using the library you just need to create a valid MarvelApiConfiguratio
 MarvelApiConfig marvelApiConfig = new MarvelApiConfig.Builder(publicKey, privateKey).debug().build();
 ```
 
-Once you have configure you Marvel api, you can use this object to obtain information from Marvel Api.
+Once you have configured your Marvel api, you can use this object to obtain information from the Marvel Api.
 
 ###Characters Api
 
-CharacterApiClient contains all operations that you can make over characters. If you want to do complex queries you can use CharactersQuery object.
+``CharacterApiClient`` contains all operations used to retrieve characters from the Marvel Api. If you want to perform complex queries you can use ``CharactersQuery`` object.
 
 ```java
 CharacterApiClient characterApiClient = new CharacterApiClient(marvelApiConfig);
@@ -62,11 +62,11 @@ Keep in mind that your PRs **must** be validated by Travis-CI. Please, run a loc
 Libraries used in this project
 ------------------------------
 
-* [okhttp] [2]
-* [retrofit] [3]
-* [JUnit] [4]
-* [Mockito] [5]
-* [mockwebserver] [6]
+* [OkHttp] [okHttp]
+* [Retrofit] [retrofit]
+* [JUnit] [junit]
+* [Mockito] [mockito]
+* [mockwebserver] [mockwebserver]
 
 License
 -------
@@ -87,10 +87,11 @@ License
 
 
     Data provided by Marvel. © 2014 Marvel
-
-[1]: http://developer.marvel.com/documentation/authorization
-[2]: https://github.com/square/okhttp
-[3]: https://github.com/square/retrofit
-[4]: https://github.com/junit-team/junit
-[5]: https://github.com/mockito/mockito
-[6]: https://github.com/square/okhttp/tree/master/mockwebserver
+    
+[marvelApi]: http://developer.marvel.com/
+[marvelAuthorization]: http://developer.marvel.com/documentation/authorization
+[okHttp]: https://github.com/square/okhttp
+[retrofit]: https://github.com/square/retrofit
+[junit]: https://github.com/junit-team/junit
+[mockito]: https://github.com/mockito/mockito
+[mockwebserver]: https://github.com/square/okhttp/tree/master/mockwebserver
