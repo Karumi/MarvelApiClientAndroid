@@ -72,7 +72,7 @@ public class ComicApiClientTest extends ApiClientTest {
   private static final String ANY_DATE_RANGE = "2015-01-09T22:10:45-0800";
   private static final String ANY_MODIFIED_SINCE = "2015-01-09T22:10:45-0800";
   private static final String ORDER_NAME_DESCEDANT_VALUE = "-name";
-  private static final String INVALID_CHARACTER_ID = "";
+  private static final String INVALID_COMIC_ID = "";
   private static final String ANY_NOT_FOUND_ID = "1234";
   private static final String ANY_COMIC_ID = "123456";
   public static final String EVENTS_REQUEST = "1,2";
@@ -160,7 +160,7 @@ public class ComicApiClientTest extends ApiClientTest {
     }
   }
 
-  @Test public void shouldParseGetAllCharactersResponse() throws Exception {
+  @Test public void shouldParseGetAllComicsResponse() throws Exception {
     ComicApiClient comicApiClient = givenComicApiClient();
     enqueueMockResponse("getComics.json");
 
@@ -170,11 +170,11 @@ public class ComicApiClientTest extends ApiClientTest {
     assertGetAllComicsResponseIsProperlyParsed(comics);
   }
 
-  @Test(expected = IllegalArgumentException.class) public void shouldNotAcceptEmptyCharacterIds()
+  @Test(expected = IllegalArgumentException.class) public void shouldNotAcceptEmptyComicIds()
       throws Exception {
     ComicApiClient comicApiClient = givenComicApiClient();
 
-    comicApiClient.getComic(INVALID_CHARACTER_ID);
+    comicApiClient.getComic(INVALID_COMIC_ID);
   }
 
   @Test public void shouldSendGetComicRequestToTheCorrectEndpoint() throws Exception {
@@ -204,12 +204,12 @@ public class ComicApiClientTest extends ApiClientTest {
     ComicApiClient comicApiClient = givenComicApiClient();
     enqueueMockResponse("getComic.json");
 
-    MarvelResponse<ComicDto> character =
+    MarvelResponse<ComicDto> comic =
         comicApiClient.getComic(ANY_COMIC_ID);
 
-    assertBasicMarvelResponse(character);
+    assertBasicMarvelResponse(comic);
 
-    ComicDto response = character.getResponse();
+    ComicDto response = comic.getResponse();
     assertIsLornaTheJungleGirl6(response);
   }
 
