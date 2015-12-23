@@ -23,6 +23,7 @@ import com.karumi.marvelapiclient.model.MarvelImage;
 import com.karumi.marvelapiclient.model.MarvelResources;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.karumi.marvelapiclient.model.MarvelUrl;
+import com.karumi.marvelapiclient.model.OrderBy;
 import com.karumi.marvelapiclient.model.StoryResourceDto;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -86,7 +87,7 @@ public class CharacterApiClientTest extends ApiClientTest {
         .withLimit(ANY_LIMIT)
         .withOffset(ANY_OFFSET)
         .withModifiedSince(getAnyDate())
-        .withOrderBy(CharactersQuery.OrderBy.NAME, false)
+        .withOrderBy(OrderBy.NAME, false)
         .addComic(ANY_COMIC_1)
         .addComic(ANY_COMIC_2)
         .addEvents(getAnyEvents())

@@ -1,0 +1,1033 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2015 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2015 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2015 MARVEL</a>",
+  "etag": "55122b303dfbc9fdfd12c080eded740b83354269",
+  "data": {
+    "offset": 0,
+    "limit": 10,
+    "total": 35767,
+    "count": 10,
+    "results": [
+      {
+        "id": 42882,
+        "digitalId": 26110,
+        "title": "Lorna the Jungle Girl (1954) #6",
+        "issueNumber": 6,
+        "variantDescription": "variant",
+        "description": "description",
+        "modified": "2015-10-15T11:13:52-0400",
+        "isbn": "1",
+        "upc": "2",
+        "diamondCode": "5",
+        "ean": "3",
+        "issn": "4",
+        "format": "Comic",
+        "pageCount": 32,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "From the award-winning team that brought you Daredevil and Spider-Woman comes another explosive chapter of one of the most controversial creator-owned comics being published today. Scarlet has declared war on a city that refuses to stop the corruption that is strangling it from within, and now she&#39;ll be forced to make her most dangerous move yet: letting them capture her."
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/42882",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/42882/lorna_the_jungle_girl_1954_6?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          },
+          {
+            "type": "reader",
+            "url": "http://marvel.com/digitalcomics/view.htm?iid=26110&utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/16355",
+          "name": "Lorna the Jungle Girl (1954 - 1957)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2054-03-01T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "-0001-11-30T00:00:00-0500"
+          },
+          {
+            "type": "unlimitedDate",
+            "date": "2012-04-13T00:00:00-0400"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 0
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/40/50b4fc783d30f",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/40/50b4fc783d30f",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/41530/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4430",
+              "name": "Jeff Youngquist",
+              "role": "editor"
+            }
+          ],
+          "returned": 1
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/42882/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/42882/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/106292",
+              "name": "cover from Lorna the Jungle Girl #6",
+              "type": "cover"
+            }
+          ],
+          "returned": 1
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/42882/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 41530,
+        "digitalId": 0,
+        "title": "Ant-Man: So (Trade Paperback)",
+        "issueNumber": 0,
+        "variantDescription": "",
+        "description": "It's the origin of the original Avenger, Ant-Man! Hank Pym has been known by a variety of names - including Ant-Man, Giant-Man, Goliath and Yellowjacket - he's been an innovative scientist, a famed super hero, an abusive spouse and more. What demons drive a man like Hank Pym? And how did he begin his heroic career? ",
+        "modified": "2012-09-25T18:05:58-0400",
+        "isbn": "978-0-7851-6390-9",
+        "upc": "",
+        "diamondCode": "",
+        "ean": "9780785 163909 51999",
+        "issn": "",
+        "format": "Trade Paperback",
+        "pageCount": 136,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "It's the origin of the original Avenger, Ant-Man! Hank Pym has been known by a variety of names - including Ant-Man, Giant-Man, Goliath and Yellowjacket - he's been an innovative scientist, a famed super hero, an abusive spouse and more. What demons drive a man like Hank Pym? And how did he begin his heroic career? "
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/41530",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/collection/41530/ant-man_so_trade_paperback?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          },
+          {
+            "type": "purchase",
+            "url": "http://comicstore.marvel.com/Ant-Man-So-0/digital-comic/27157?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/15481",
+          "name": "Ant-Man: So (2011 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2020-12-31T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2020-12-16T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 19.99
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/30/4fe8cb51f32e0",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/30/4fe8cb51f32e0",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/41530/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4430",
+              "name": "Jeff Youngquist",
+              "role": "editor"
+            }
+          ],
+          "returned": 1
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/41530/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 2,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/41530/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/93946",
+              "name": "Cover #93946",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/93947",
+              "name": "Interior #93947",
+              "type": "interiorStory"
+            }
+          ],
+          "returned": 2
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/41530/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 47113,
+        "digitalId": 0,
+        "title": "Scarlet (2010) #9",
+        "issueNumber": 9,
+        "variantDescription": "",
+        "description": "From the award-winning team that brought you Daredevil and Spider-Woman comes another explosive chapter of one of the most controversial creator-owned comics being published today. Scarlet has declared war on a city that refuses to stop the corruption that is strangling it from within, and now she&#39;ll be forced to make her most dangerous move yet: letting them capture her.",
+        "modified": "2015-10-02T09:05:34-0400",
+        "isbn": "",
+        "upc": "759606073611000911",
+        "diamondCode": "MAY130705",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 40,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "From the award-winning team that brought you Daredevil and Spider-Woman comes another explosive chapter of one of the most controversial creator-owned comics being published today. Scarlet has declared war on a city that refuses to stop the corruption that is strangling it from within, and now she&#39;ll be forced to make her most dangerous move yet: letting them capture her."
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/47113",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/47113/scarlet_2010_9?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/12212",
+          "name": "Scarlet (2010 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2016-03-02T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2016-02-17T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 3.95
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/e0/517aab576d132",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/e0/517aab576d132",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/47113/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4430",
+              "name": "Jeff Youngquist",
+              "role": "editor"
+            }
+          ],
+          "returned": 1
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/47113/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 2,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/47113/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/105819",
+              "name": "cover from Scarlet (2010) #9",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/105820",
+              "name": "story from Scarlet (2010) #9",
+              "type": "interiorStory"
+            }
+          ],
+          "returned": 2
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/47113/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 39918,
+        "digitalId": 0,
+        "title": "Brilliant (2011) #6",
+        "issueNumber": 6,
+        "variantDescription": "",
+        "description": "The runaway creator-owned smash continues! From the award-winning creators of ULTIMATE SPIDER-MAN comes another blistering chapter in a world where college students discover the secret of superpowers - and now that secret is out! How will the world react when science fiction becomes science fact?",
+        "modified": "2015-10-29T09:05:08-0400",
+        "isbn": "",
+        "upc": "75960607683300611",
+        "diamondCode": "MAR120631",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 40,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "The runaway creator-owned smash continues! From the award-winning creators of ULTIMATE SPIDER-MAN comes another blistering chapter in a world where college students discover the secret of superpowers - and now that secret is out! How will the world react when science fiction becomes science fact?"
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/39918",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/39918/brilliant_2011_6?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/14803",
+          "name": "Brilliant (2011 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2016-01-20T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2016-01-05T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 3.95
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/03/502912f2a8809",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/03/502912f2a8809",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/39918/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4430",
+              "name": "Jeff Youngquist",
+              "role": "editor"
+            }
+          ],
+          "returned": 1
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/39918/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 2,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/39918/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/90603",
+              "name": "Cover #90603",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/90604",
+              "name": "Interior #90604",
+              "type": "interiorStory"
+            }
+          ],
+          "returned": 2
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/39918/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 57620,
+        "digitalId": 0,
+        "title": "Secret Wars (2015) #9",
+        "issueNumber": 9,
+        "variantDescription": "",
+        "description": "GENESIS!",
+        "modified": "2015-12-14T15:32:10-0500",
+        "isbn": "",
+        "upc": "75960608230800911",
+        "diamondCode": "OCT150729",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 56,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "GENESIS!"
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/57620",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/57620/secret_wars_2015_9?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/19648",
+          "name": "Secret Wars (2015 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2016-01-13T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2015-12-28T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 4.99
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/70/55df055090ffc",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/70/566f239937167",
+            "extension": "jpg"
+          },
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/70/55df055090ffc",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 4,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/57620/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/2133",
+              "name": "Tom Brevoort",
+              "role": "editor"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/11743",
+              "name": "Jonathan Hickman",
+              "role": "writer"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/182",
+              "name": "Esad Ribic",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/63",
+              "name": "Alex Ross",
+              "role": "penciller (cover)"
+            }
+          ],
+          "returned": 4
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/57620/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 2,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/57620/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/126044",
+              "name": "cover from Secret Wars (2015) #9",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/126045",
+              "name": "story from Secret Wars (2015) #9",
+              "type": "interiorStory"
+            }
+          ],
+          "returned": 2
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/57620/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 55304,
+        "digitalId": 0,
+        "title": "Amazing Spider-Man (2015) #6",
+        "issueNumber": 6,
+        "variantDescription": "",
+        "description": null,
+        "modified": "2015-12-22T14:03:54-0500",
+        "isbn": "",
+        "upc": "75960608297100611",
+        "diamondCode": "NOV150841",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 32,
+        "textObjects": [],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/55304",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/55304/amazing_spider-man_2015_6?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/20432",
+          "name": "Amazing Spider-Man (2015 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2016-01-06T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2015-12-21T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 3.99
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
+          "extension": "jpg"
+        },
+        "images": [],
+        "creators": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55304/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4300",
+              "name": "Nick Lowe",
+              "role": "editor"
+            }
+          ],
+          "returned": 1
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55304/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55304/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/121651",
+              "name": "cover from The Amazing Spider-Man (2015) #6",
+              "type": "cover"
+            }
+          ],
+          "returned": 1
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55304/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 51705,
+        "digitalId": 0,
+        "title": "Deadpool & Cable: Split Second Infinite Comic (2015) #6",
+        "issueNumber": 6,
+        "variantDescription": "",
+        "description": null,
+        "modified": "2015-12-09T11:36:35-0500",
+        "isbn": "",
+        "upc": "75960608251300611",
+        "diamondCode": "",
+        "ean": "",
+        "issn": "",
+        "format": "Digital Comic",
+        "pageCount": 15,
+        "textObjects": [],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/51705",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/51705/deadpool_cable_split_second_infinite_comic_2015_6?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          },
+          {
+            "type": "purchase",
+            "url": "http://comicstore.marvel.com/Deadpool-Cable-Split-Second-Infinite-Comic-6/digital-comic/40783?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/19383",
+          "name": "Deadpool & Cable: Split Second Infinite Comic (2015 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2016-01-06T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2015-12-25T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 0
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
+          "extension": "jpg"
+        },
+        "images": [],
+        "creators": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/51705/creators",
+          "items": [],
+          "returned": 0
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/51705/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/51705/stories",
+          "items": [],
+          "returned": 0
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/51705/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 55822,
+        "digitalId": 0,
+        "title": "Contest of Champions (2015) #4",
+        "issueNumber": 4,
+        "variantDescription": "",
+        "description": "THE MAN WHO TRAINED DAREDEVIL VS. THE WOMAN WHO LOVED DAREDEVIL!\nCan the blind martial arts master known as Stick beat a Bullseye who’s also his greatest student? Venom-Hulk vs Guillotines... plural? Plus! White Fox gets close to the truth as the enemy Summoner makes his move!",
+        "modified": "2015-12-15T11:54:40-0500",
+        "isbn": "",
+        "upc": "759606083221000411",
+        "diamondCode": "NOV150878",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 32,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "THE MAN WHO TRAINED DAREDEVIL VS. THE WOMAN WHO LOVED DAREDEVIL!\nCan the blind martial arts master known as Stick beat a Bullseye who’s also his greatest student? Venom-Hulk vs Guillotines... plural? Plus! White Fox gets close to the truth as the enemy Summoner makes his move!"
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/55822",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/55822/contest_of_champions_2015_4?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/20535",
+          "name": "Contest of Champions (2015 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2016-01-06T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2015-12-21T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 3.99
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/03/5670455a6c016",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/03/5670455a6c016",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 2,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55822/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/12431",
+              "name": "Victor Ibanez",
+              "role": "penciller (cover)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4600",
+              "name": "Mark Paniccia",
+              "role": "editor"
+            }
+          ],
+          "returned": 2
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55822/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55822/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/122683",
+              "name": "cover from Contest of Champions (2015) #4",
+              "type": "cover"
+            }
+          ],
+          "returned": 1
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55822/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 55739,
+        "digitalId": 0,
+        "title": "Squadron Supreme (2015) #2",
+        "issueNumber": 2,
+        "variantDescription": "",
+        "description": null,
+        "modified": "2015-12-22T09:40:24-0500",
+        "isbn": "",
+        "upc": "75960608316900211",
+        "diamondCode": "OCT150787",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 32,
+        "textObjects": [],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/55739",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/55739/squadron_supreme_2015_2?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/20517",
+          "name": "Squadron Supreme (2015 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2015-12-30T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2015-12-15T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 3.99
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
+          "extension": "jpg"
+        },
+        "images": [],
+        "creators": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55739/creators",
+          "items": [],
+          "returned": 0
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55739/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55739/stories",
+          "items": [],
+          "returned": 0
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/55739/events",
+          "items": [],
+          "returned": 0
+        }
+      },
+      {
+        "id": 56432,
+        "digitalId": 0,
+        "title": "All-New Wolverine (2015) #3",
+        "issueNumber": 3,
+        "variantDescription": "",
+        "description": "CAN YOU HANDLE THE DEADLY MYSTERY OF THE FOUR SISTERS? It’s WOLVERINE vs. TASKMASTER in this explosive issue! Can Laura survive ALCHEMAX’S army of mercenaries? What is the devastating secret the SISTERS have been keeping?",
+        "modified": "2015-12-21T12:33:04-0500",
+        "isbn": "",
+        "upc": "75960608359600311",
+        "diamondCode": "OCT150816",
+        "ean": "",
+        "issn": "",
+        "format": "Comic",
+        "pageCount": 32,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "CAN YOU HANDLE THE DEADLY MYSTERY OF THE FOUR SISTERS? It’s WOLVERINE vs. TASKMASTER in this explosive issue! Can Laura survive ALCHEMAX’S army of mercenaries? What is the devastating secret the SISTERS have been keeping?"
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/56432",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/56432/all-new_wolverine_2015_3?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          },
+          {
+            "type": "purchase",
+            "url": "http://comicstore.marvel.com/All-New-Wolverine-3/digital-comic/40734?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/20682",
+          "name": "All-New Wolverine (2015 - Present)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2015-12-30T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "2015-12-15T00:00:00-0500"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 3.99
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/40/56783844da49d",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/40/56783844da49d",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 4,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/56432/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/8098",
+              "name": "Bengal",
+              "role": "penciller (cover)"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/12392",
+              "name": "David Lopez",
+              "role": "penciller"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4600",
+              "name": "Mark Paniccia",
+              "role": "editor"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/12447",
+              "name": "Tom Taylor",
+              "role": "writer"
+            }
+          ],
+          "returned": 4
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/56432/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 2,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/56432/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/123719",
+              "name": "cover from All-New Wolverine (2015) #3",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/123720",
+              "name": "story from All-New Wolverine (2015) #3",
+              "type": "interiorStory"
+            }
+          ],
+          "returned": 2
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/56432/events",
+          "items": [],
+          "returned": 0
+        }
+      }
+    ]
+  }
+}

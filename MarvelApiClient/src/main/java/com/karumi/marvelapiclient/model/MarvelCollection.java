@@ -19,24 +19,31 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharactersDto extends MarvelCollection<CharacterDto> {
+public class MarvelCollection<T> {
+  @SerializedName("offset") private int offset;
+  @SerializedName("limit") private int limit;
+  @SerializedName("total") private int total;
+  @SerializedName("count") private int count;
+  @SerializedName("results") private List<T> results = new ArrayList<>();
 
-  public List<CharacterDto> getCharacters() {
-    return getResults();
+  public int getOffset() {
+    return offset;
   }
 
-  @Override public String toString() {
-    return "CharactersDto{"
-        + "offset="
-        + getOffset()
-        + ", limit="
-        + getLimit()
-        + ", total="
-        + getTotal()
-        + ", count="
-        + getCount()
-        + ", characters="
-        + getCharacters().toString()
-        + '}';
+  public int getLimit() {
+    return limit;
   }
+
+  public int getTotal() {
+    return total;
+  }
+
+  public int getCount() {
+    return count;
+  }
+
+  protected List<T> getResults() {
+    return results;
+  }
+
 }
