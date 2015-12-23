@@ -16,11 +16,14 @@
 package com.karumi.marvelapiclient.sample;
 
 import com.karumi.marvelapiclient.CharacterApiClient;
+import com.karumi.marvelapiclient.ComicApiClient;
 import com.karumi.marvelapiclient.MarvelApiConfig;
 import com.karumi.marvelapiclient.MarvelApiException;
 import com.karumi.marvelapiclient.model.CharacterDto;
 import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.CharactersQuery;
+import com.karumi.marvelapiclient.model.ComicDto;
+import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 
 public class MarveApiClientDemo {
@@ -46,6 +49,14 @@ public class MarveApiClientDemo {
         CharacterApiClient characterApiClient = new CharacterApiClient(marvelApiConfig);
         MarvelResponse<CharacterDto> character = characterApiClient.getCharacter("1011334");
         System.out.println(character.toString());
+      } else if (operation.equals("getComics")) {
+        ComicApiClient comicApiClient = new ComicApiClient(marvelApiConfig);
+        MarvelResponse<ComicsDto> comics = comicApiClient.getAll(0, 10);
+        System.out.println(comics.toString());
+      } else if (operation.equals("getComic")) {
+        ComicApiClient comicApiClient = new ComicApiClient(marvelApiConfig);
+        MarvelResponse<ComicDto> comic = comicApiClient.getComic("42882");
+        System.out.println(comic.toString());
       }
     } catch (MarvelApiException e) {
       System.out.println("An error calling the Marvel Api " + e);

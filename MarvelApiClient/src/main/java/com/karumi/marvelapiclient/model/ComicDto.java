@@ -164,4 +164,38 @@ public class ComicDto {
   public MarvelResources<EventResourceDto> getEvents() {
     return events;
   }
+
+  @Override public String toString() {
+    return "ComicDto{" +
+        "id='" + id + '\'' +
+        ", digitalId=" + digitalId +
+        ", title='" + title + '\'' +
+        ", issueNumber=" + issueNumber +
+        ", variantDescription='" + variantDescription + '\'' +
+        ", description='" + description + '\'' +
+        ", modified='" + modified + '\'' +
+        ", isbn='" + isbn + '\'' +
+        ", upc='" + upc + '\'' +
+        ", diamondCode='" + diamondCode + '\'' +
+        ", ean='" + ean + '\'' +
+        ", issn='" + issn + '\'' +
+        ", format='" + format + '\'' +
+        ", pageCount=" + pageCount +
+        ", textObjects=" + textObjects +
+        ", resourceURI='" + resourceURI + '\'' +
+        ", urls=" + urls +
+        ", series=" + series +
+        ", variants=" + variants +
+        ", collections=" + collections +
+        ", collectedIssues=" + collectedIssues +
+        ", dates=" + dates +
+        ", prices=" + prices +
+        ", thumbnail=" + thumbnail +
+        ", images=" + images +
+        ", creators=" + creators +
+        ", characters=" + characters +
+        ", stories=" + stories +
+        ", events=" + events +
+        '}';
+  }
 }
