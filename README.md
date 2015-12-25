@@ -1,4 +1,4 @@
-Marvel Api Client written in Java [![Build Status](https://travis-ci.org/Karumi/MarvelApiClientAndroid.svg?branch=master)](https://travis-ci.org/Karumi/MarvelApiClientAndroid) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.karumi/marvelapiclient/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.karumi/marvelapiclient)
+![Karumi logo][karumilogo] Marvel Api Client written in Java [![Build Status](https://travis-ci.org/Karumi/MarvelApiClientAndroid.svg?branch=master)](https://travis-ci.org/Karumi/MarvelApiClientAndroid) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.karumi/marvelapiclient/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.karumi/marvelapiclient)
 ==========================
 
 
@@ -95,3 +95,4 @@ License
 [junit]: https://github.com/junit-team/junit
 [mockito]: https://github.com/mockito/mockito
 [mockwebserver]: https://github.com/square/okhttp/tree/master/mockwebserver
+[karumilogo]: https://cloud.githubusercontent.com/assets/858090/11626547/e5a1dc66-9ce3-11e5-908d-537e07e82090.png
