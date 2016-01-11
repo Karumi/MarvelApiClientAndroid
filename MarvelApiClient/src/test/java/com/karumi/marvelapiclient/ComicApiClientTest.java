@@ -22,6 +22,7 @@ import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.ComicsQuery;
 import com.karumi.marvelapiclient.model.CreatorResourceDto;
 import com.karumi.marvelapiclient.model.EventResourceDto;
+import com.karumi.marvelapiclient.model.Format;
 import com.karumi.marvelapiclient.model.MarvelDate;
 import com.karumi.marvelapiclient.model.MarvelImage;
 import com.karumi.marvelapiclient.model.MarvelPrice;
@@ -101,7 +102,7 @@ public class ComicApiClientTest extends ApiClientTest {
     enqueueMockResponse();
 
     ComicsQuery query = ComicsQuery.Builder.create()
-        .withFormat(ComicsQuery.Format.COMIC)
+        .withFormat(Format.COMIC)
         .withFormatType(ComicsQuery.FormatType.COLLECTION)
         .withNoVariants()
         .withDateDescriptor(ComicsQuery.DateDescriptor.LAST_WEEK)
@@ -131,7 +132,7 @@ public class ComicApiClientTest extends ApiClientTest {
 
     comicApiClient.getAll(query);
 
-    assertRequestSentToContains("format=" + ComicsQuery.Format.COMIC.toString(),
+    assertRequestSentToContains("format=" + Format.COMIC.toString(),
         "formatType=" + ComicsQuery.FormatType.COLLECTION, "noVariants=true",
         "dateDescriptor=" + LAST_WEEK_REQUEST, "dateRange=" + ANY_DATE_RANGE,
         "startYear=" + ANY_START_YEAR, "issueNumber=" + ANY_ISSUE_NUMBER,
@@ -204,8 +205,7 @@ public class ComicApiClientTest extends ApiClientTest {
     ComicApiClient comicApiClient = givenComicApiClient();
     enqueueMockResponse("getComic.json");
 
-    MarvelResponse<ComicDto> comic =
-        comicApiClient.getComic(ANY_COMIC_ID);
+    MarvelResponse<ComicDto> comic = comicApiClient.getComic(ANY_COMIC_ID);
 
     assertBasicMarvelResponse(comic);
 

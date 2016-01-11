@@ -15,5 +15,26 @@
 
 package com.karumi.marvelapiclient.model;
 
-public class CharacterResourceDto extends MarvelResourceDto {
+import java.util.List;
+
+public class SeriesCollectionDto extends MarvelCollection<SeriesDto> {
+
+  public List<SeriesDto> getSeries() {
+    return getResults();
+  }
+
+  @Override public String toString() {
+    return "CharactersDto{"
+        + "offset="
+        + getOffset()
+        + ", limit="
+        + getLimit()
+        + ", total="
+        + getTotal()
+        + ", count="
+        + getCount()
+        + ", characters="
+        + getSeries().toString()
+        + '}';
+  }
 }

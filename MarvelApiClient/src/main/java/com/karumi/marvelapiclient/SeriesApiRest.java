@@ -13,7 +13,19 @@
  *   limitations under the License.
  */
 
-package com.karumi.marvelapiclient.model;
+package com.karumi.marvelapiclient;
 
-public class CharacterResourceDto extends MarvelResourceDto {
+import com.karumi.marvelapiclient.model.MarvelResponse;
+import com.karumi.marvelapiclient.model.SeriesCollectionDto;
+import java.util.Map;
+import retrofit.Call;
+import retrofit.http.GET;
+import retrofit.http.Path;
+import retrofit.http.QueryMap;
+
+interface SeriesApiRest {
+  @GET("series") Call<MarvelResponse<SeriesCollectionDto>> getSeries(
+      @QueryMap Map<String, Object> seriesFilter);
+
+  @GET("series/{id}") Call<MarvelResponse<SeriesCollectionDto>> getSerie(@Path("id") String serieId);
 }
