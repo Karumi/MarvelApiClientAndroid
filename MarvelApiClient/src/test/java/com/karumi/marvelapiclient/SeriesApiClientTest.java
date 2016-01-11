@@ -25,8 +25,8 @@ import com.karumi.marvelapiclient.model.MarvelResources;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.karumi.marvelapiclient.model.MarvelUrl;
 import com.karumi.marvelapiclient.model.OrderBy;
-import com.karumi.marvelapiclient.model.SerieDto;
 import com.karumi.marvelapiclient.model.SeriesDto;
+import com.karumi.marvelapiclient.model.SeriesCollectionDto;
 import com.karumi.marvelapiclient.model.SeriesQuery;
 import com.karumi.marvelapiclient.model.StoryResourceDto;
 import java.util.ArrayList;
@@ -41,7 +41,7 @@ import retrofit.Retrofit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class SerieApiClientTest extends ApiClientTest {
+public class SeriesApiClientTest extends ApiClientTest {
 
   private static final String ANY_PUBLIC_KEY = "1234";
   private static final String ANY_PRIVATE_KEY = "abcd";
@@ -62,30 +62,30 @@ public class SerieApiClientTest extends ApiClientTest {
   private static final int ANY_COLLABORATOR_2 = 2;
   private static final String ANY_MODIFIED_SINCE = "2015-01-09T22:10:45-0800";
   private static final String ORDER_NAME_DESCEDANT_VALUE = "-name";
-  private static final String INVALID_SERIE_ID = "";
+  private static final String INVALID_SERIES_ID = "";
   private static final String ANY_NOT_FOUND_ID = "1234";
   private static final String ANY_SERIE_ID = "123456";
   public static final String EVENTS_REQUEST = "1,2";
 
   @Test public void shouldSendOffsetAsLimitAsParamsWhenGetAll() throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
     enqueueMockResponse();
 
-    serieApiClient.getAll(ANY_OFFSET, ANY_LIMIT);
+    seriesApiClient.getAll(ANY_OFFSET, ANY_LIMIT);
 
     assertRequestSentToContains("offset=" + ANY_OFFSET, "limit=" + ANY_LIMIT);
   }
 
   @Test(expected = IllegalArgumentException.class) public void shouldThrowExceptionWhenLimitIsZero()
       throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
     enqueueMockResponse();
 
-    serieApiClient.getAll(ANY_OFFSET, INVALID_LIMIT);
+    seriesApiClient.getAll(ANY_OFFSET, INVALID_LIMIT);
   }
 
   @Test public void shouldUseAllTheRequestParamsAddedFromQueryWhenSendIt() throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
     enqueueMockResponse();
 
     SeriesQuery query = SeriesQuery.Builder.create()
@@ -105,7 +105,7 @@ public class SerieApiClientTest extends ApiClientTest {
         .withSeriesType(SeriesQuery.SeriesType.COLLECTION)
         .build();
 
-    serieApiClient.getAll(query);
+    seriesApiClient.getAll(query);
 
     assertRequestSentToContains("startYear=" + ANY_START_YEAR, "creators=" + ANY_CREATOR,
         "characters=" + ANY_CHARACTER, "offset=" + ANY_OFFSET, "limit=" + ANY_LIMIT,
@@ -118,13 +118,13 @@ public class SerieApiClientTest extends ApiClientTest {
 
   @Test(expected = MarvelAuthApiException.class)
   public void shouldThrowMarvelApiExceptionOnAuthHttpError() throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
     enqueueMockResponse(401,
         "{\"code\":\"InvalidCredentials\",\"message\":\"That hash, timestamp and key "
             + "combination is invalid.\"}");
 
     try {
-      serieApiClient.getAll(ANY_OFFSET, ANY_LIMIT);
+      seriesApiClient.getAll(ANY_OFFSET, ANY_LIMIT);
     } catch (MarvelApiException e) {
       assertEquals("InvalidCredentials", e.getMarvelCode());
       assertEquals("That hash, timestamp and key combination is invalid.", e.getMessage());
@@ -133,54 +133,54 @@ public class SerieApiClientTest extends ApiClientTest {
   }
 
   @Test public void shouldParseGetAllSeriesResponse() throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
-    enqueueMockResponse("getSeries.json");
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
+    enqueueMockResponse("getSeriesCollection.json");
 
-    MarvelResponse<SeriesDto> series = serieApiClient.getAll(0, ANY_LIMIT);
+    MarvelResponse<SeriesCollectionDto> series = seriesApiClient.getAll(0, ANY_LIMIT);
 
     assertBasicMarvelResponse(series);
     assertGetAllSeriesResponseIsProperlyParsed(series);
   }
 
-  @Test(expected = IllegalArgumentException.class) public void shouldNotAcceptEmptySerieId()
+  @Test(expected = IllegalArgumentException.class) public void shouldNotAcceptEmptySeriesId()
       throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
 
-    serieApiClient.getSerie(INVALID_SERIE_ID);
+    seriesApiClient.getSeriesById(INVALID_SERIES_ID);
   }
 
-  @Test public void shouldSendGetSerieRequestToTheCorrectEndpoint() throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
-    enqueueMockResponse("getSerie.json");
+  @Test public void shouldSendGetSeriesRequestToTheCorrectEndpoint() throws Exception {
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
+    enqueueMockResponse("getSeriesCollection.json");
 
-    serieApiClient.getSerie(ANY_SERIE_ID);
+    seriesApiClient.getSeriesById(ANY_SERIE_ID);
 
     assertRequestSentToContains("series/" + ANY_SERIE_ID);
   }
 
   @Test(expected = MarvelApiException.class)
   public void shouldReturnMarvelExceptionWhenTheIdDoesNotExist() throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
-    enqueueMockResponse(404, "{\"code\":404,\"status\":\"We couldn't find that serie\"}");
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
+    enqueueMockResponse(404, "{\"code\":404,\"status\":\"We couldn't find that series\"}");
 
     try {
-      serieApiClient.getSerie(ANY_NOT_FOUND_ID);
+      seriesApiClient.getSeriesById(ANY_NOT_FOUND_ID);
     } catch (MarvelApiException e) {
       assertEquals("404", e.getMarvelCode());
-      assertEquals("We couldn't find that serie", e.getMessage());
+      assertEquals("We couldn't find that series", e.getMessage());
       throw e;
     }
   }
 
-  @Test public void shouldParseGetSerieResponse() throws Exception {
-    SerieApiClient serieApiClient = givenSerieApiClient();
-    enqueueMockResponse("getSerie.json");
+  @Test public void shouldParseGetSeriesResponse() throws Exception {
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
+    enqueueMockResponse("getSeries.json");
 
-    MarvelResponse<SerieDto> serie = serieApiClient.getSerie(ANY_SERIE_ID);
+    MarvelResponse<SeriesDto> series = seriesApiClient.getSeriesById(ANY_SERIE_ID);
 
-    assertBasicMarvelResponse(serie);
+    assertBasicMarvelResponse(series);
 
-    SerieDto response = serie.getResponse();
+    SeriesDto response = series.getResponse();
     assertIs5Ronnin(response);
   }
 
@@ -191,7 +191,7 @@ public class SerieApiClientTest extends ApiClientTest {
     return events;
   }
 
-  private SerieApiClient givenSerieApiClient() {
+  private SeriesApiClient givenSeriesApiClient() {
 
     Retrofit retrofit = new Retrofit.Builder().baseUrl(getBaseEndpoint())
         .addConverterFactory(GsonConverterFactory.create())
@@ -201,42 +201,42 @@ public class SerieApiClientTest extends ApiClientTest {
         new MarvelApiConfig.Builder(ANY_PUBLIC_KEY, ANY_PRIVATE_KEY).baseUrl(ANY_URL)
             .retrofit(retrofit)
             .build();
-    return new SerieApiClient(marvelApiConfig);
+    return new SeriesApiClient(marvelApiConfig);
   }
 
-  private void assertGetAllSeriesResponseIsProperlyParsed(MarvelResponse<SeriesDto> series) {
-    SeriesDto seriesDto = series.getResponse();
-    assertEquals(10, seriesDto.getCount());
-    assertEquals(10, seriesDto.getLimit());
-    assertEquals(0, seriesDto.getOffset());
-    assertEquals(1823, seriesDto.getTotal());
+  private void assertGetAllSeriesResponseIsProperlyParsed(MarvelResponse<SeriesCollectionDto> series) {
+    SeriesCollectionDto seriesCollectionDto = series.getResponse();
+    assertEquals(10, seriesCollectionDto.getCount());
+    assertEquals(10, seriesCollectionDto.getLimit());
+    assertEquals(0, seriesCollectionDto.getOffset());
+    assertEquals(1823, seriesCollectionDto.getTotal());
 
-    SerieDto serieDto = seriesDto.getSeries().get(0);
-    assertIs5Ronnin(serieDto);
+    SeriesDto seriesDto = seriesCollectionDto.getSeries().get(0);
+    assertIs5Ronnin(seriesDto);
   }
 
-  private void assertIs5Ronnin(SerieDto serieDto) {
-    assertEquals("15276", serieDto.getId());
-    assertEquals("5 Ronin (2011)", serieDto.getTitle());
-    assertEquals("description", serieDto.getDescription());
-    assertEquals("2011-05-20T16:25:29-0400", serieDto.getModified());
-    assertEquals(2011, serieDto.getStartYear());
-    assertEquals(2011, serieDto.getEndYear());
-    assertEquals("+18", serieDto.getRating());
+  private void assertIs5Ronnin(SeriesDto seriesDto) {
+    assertEquals("15276", seriesDto.getId());
+    assertEquals("5 Ronin (2011)", seriesDto.getTitle());
+    assertEquals("description", seriesDto.getDescription());
+    assertEquals("2011-05-20T16:25:29-0400", seriesDto.getModified());
+    assertEquals(2011, seriesDto.getStartYear());
+    assertEquals(2011, seriesDto.getEndYear());
+    assertEquals("+18", seriesDto.getRating());
 
-    assertEquals("http://gateway.marvel.com/v1/public/series/15276", serieDto.getResourceURI());
+    assertEquals("http://gateway.marvel.com/v1/public/series/15276", seriesDto.getResourceURI());
 
-    MarvelUrl marvelUrl = serieDto.getUrls().get(0);
+    MarvelUrl marvelUrl = seriesDto.getUrls().get(0);
     assertEquals("detail", marvelUrl.getType());
     assertEquals("http://marvel.com/comics/series/15276/5_ronin_2011?utm_campaign=apiRef&utm_source"
         + "=838a08a2f4c39fa3fd218b1b2d43f19a", marvelUrl.getUrl());
 
-    MarvelImage thumbnail = serieDto.getThumbnail();
+    MarvelImage thumbnail = seriesDto.getThumbnail();
     assertEquals("http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
         thumbnail.getPath());
     assertEquals("jpg", thumbnail.getExtension());
 
-    MarvelResources<CreatorResourceDto> creators = serieDto.getCreators();
+    MarvelResources<CreatorResourceDto> creators = seriesDto.getCreators();
     assertEquals(8, creators.getAvailable());
     assertEquals("http://gateway.marvel.com/v1/public/series/15276/creators",
         creators.getCollectionUri());
@@ -247,7 +247,7 @@ public class SerieApiClientTest extends ApiClientTest {
     assertEquals("David Aja", creatorResourceDto.getName());
     assertEquals("penciller (cover)", creatorResourceDto.getRole());
 
-    MarvelResources<CharacterResourceDto> characters = serieDto.getCharacters();
+    MarvelResources<CharacterResourceDto> characters = seriesDto.getCharacters();
     assertEquals(4, characters.getAvailable());
     assertEquals(4, characters.getReturned());
     CharacterResourceDto characterResourceDto = characters.getItems().get(0);
@@ -255,7 +255,7 @@ public class SerieApiClientTest extends ApiClientTest {
         characterResourceDto.getResourceUri());
     assertEquals("Deadpool", characterResourceDto.getName());
 
-    MarvelResources<StoryResourceDto> stories = serieDto.getStories();
+    MarvelResources<StoryResourceDto> stories = seriesDto.getStories();
     assertEquals(12, stories.getAvailable());
     assertEquals("http://gateway.marvel.com/v1/public/series/15276/stories",
         stories.getCollectionUri());
@@ -266,7 +266,7 @@ public class SerieApiClientTest extends ApiClientTest {
     assertEquals("Interior #80038", storyResourceDto.getName());
     assertEquals("interiorStory", storyResourceDto.getType());
 
-    MarvelResources<ComicResourceDto> comics = serieDto.getComics();
+    MarvelResources<ComicResourceDto> comics = seriesDto.getComics();
     assertEquals(2, comics.getAvailable());
     assertEquals("http://gateway.marvel.com/v1/public/series/15276/comics",
         comics.getCollectionUri());
@@ -276,7 +276,7 @@ public class SerieApiClientTest extends ApiClientTest {
         comicResourceDto.getResourceUri());
     assertEquals("5 Ronin (Hardcover)", comicResourceDto.getName());
 
-    MarvelResources<EventResourceDto> events = serieDto.getEvents();
+    MarvelResources<EventResourceDto> events = seriesDto.getEvents();
     assertEquals(0, events.getAvailable());
     assertEquals(0, events.getReturned());
     assertEquals("http://gateway.marvel.com/v1/public/series/15276/events",

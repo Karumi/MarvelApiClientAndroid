@@ -16,16 +16,16 @@
 package com.karumi.marvelapiclient;
 
 import com.karumi.marvelapiclient.model.MarvelResponse;
-import com.karumi.marvelapiclient.model.SeriesDto;
+import com.karumi.marvelapiclient.model.SeriesCollectionDto;
 import java.util.Map;
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Path;
 import retrofit.http.QueryMap;
 
-interface SerieApiRest {
-  @GET("series") Call<MarvelResponse<SeriesDto>> getSeries(
+interface SeriesApiRest {
+  @GET("series") Call<MarvelResponse<SeriesCollectionDto>> getSeries(
       @QueryMap Map<String, Object> seriesFilter);
 
-  @GET("series/{id}") Call<MarvelResponse<SeriesDto>> getSerie(@Path("id") String serieId);
+  @GET("series/{id}") Call<MarvelResponse<SeriesCollectionDto>> getSerie(@Path("id") String serieId);
 }
