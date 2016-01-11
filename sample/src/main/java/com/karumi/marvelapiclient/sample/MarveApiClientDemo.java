@@ -19,12 +19,15 @@ import com.karumi.marvelapiclient.CharacterApiClient;
 import com.karumi.marvelapiclient.ComicApiClient;
 import com.karumi.marvelapiclient.MarvelApiConfig;
 import com.karumi.marvelapiclient.MarvelApiException;
+import com.karumi.marvelapiclient.SerieApiClient;
 import com.karumi.marvelapiclient.model.CharacterDto;
 import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.CharactersQuery;
 import com.karumi.marvelapiclient.model.ComicDto;
 import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.MarvelResponse;
+import com.karumi.marvelapiclient.model.SerieDto;
+import com.karumi.marvelapiclient.model.SeriesDto;
 
 public class MarveApiClientDemo {
   public static void main(String[] args) {
@@ -57,6 +60,14 @@ public class MarveApiClientDemo {
         ComicApiClient comicApiClient = new ComicApiClient(marvelApiConfig);
         MarvelResponse<ComicDto> comic = comicApiClient.getComic("42882");
         System.out.println(comic.toString());
+      } else if (operation.equals("getSeries")) {
+        SerieApiClient serieApiClient = new SerieApiClient(marvelApiConfig);
+        MarvelResponse<SeriesDto> series = serieApiClient.getAll(0, 10);
+        System.out.println(series.toString());
+      } else if (operation.equals("getSerie")) {
+        SerieApiClient serieApiClient = new SerieApiClient(marvelApiConfig);
+        MarvelResponse<SerieDto> serie = serieApiClient.getSerie("15276");
+        System.out.println(serie.toString());
       }
     } catch (MarvelApiException e) {
       System.out.println("An error calling the Marvel Api " + e);
