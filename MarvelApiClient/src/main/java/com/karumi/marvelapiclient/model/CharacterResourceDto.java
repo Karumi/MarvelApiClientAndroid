@@ -15,12 +15,5 @@
 
 package com.karumi.marvelapiclient.model;
 
-import com.google.gson.annotations.SerializedName;
-
-public class CharacterResourceDto {
-  @SerializedName("role") private String role;
-
-  public String getRole() {
-    return role;
-  }
+public class CharacterResourceDto extends MarvelResourceDto {
 }
