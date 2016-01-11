@@ -15,9 +15,6 @@
 
 package com.karumi.marvelapiclient;
 
-import com.karumi.marvelapiclient.model.CharacterDto;
-import com.karumi.marvelapiclient.model.CharactersDto;
-import com.karumi.marvelapiclient.model.CharactersQuery;
 import com.karumi.marvelapiclient.model.ComicDto;
 import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.ComicsQuery;
@@ -36,13 +33,11 @@ public final class ComicApiClient extends MarvelApiClient {
   }
 
   public MarvelResponse<ComicsDto> getAll(int offset, int limit) throws MarvelApiException {
-    ComicsQuery query =
-        ComicsQuery.Builder.create().withOffset(offset).withLimit(limit).build();
+    ComicsQuery query = ComicsQuery.Builder.create().withOffset(offset).withLimit(limit).build();
     return getAll(query);
   }
 
-  public MarvelResponse<ComicsDto> getAll(ComicsQuery comicsQuery)
-      throws MarvelApiException {
+  public MarvelResponse<ComicsDto> getAll(ComicsQuery comicsQuery) throws MarvelApiException {
     ComicApiRest api = getApi(ComicApiRest.class);
 
     Map<String, Object> queryAsMap = comicsQuery.toMap();

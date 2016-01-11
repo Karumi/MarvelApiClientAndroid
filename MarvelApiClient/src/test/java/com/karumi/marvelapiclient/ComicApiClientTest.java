@@ -96,7 +96,7 @@ public class ComicApiClientTest extends ApiClientTest {
     comicApiClient.getAll(ANY_OFFSET, INVALID_LIMIT);
   }
 
-  @Test public void shouldRequestComicsUsingAllTheRequestParams() throws Exception {
+  @Test public void shouldUseAllTheRequestParamsAddedFromQueryWhenSendIt() throws Exception {
     ComicApiClient comicApiClient = givenComicApiClient();
     enqueueMockResponse();
 

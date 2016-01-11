@@ -340,7 +340,7 @@ public class ComicsQuery {
     }
 
     public Builder withDateRange(Date date) {
-      checkNull(date);
+      checkNotNull(date);
       dateRange = date;
       return this;
     }
@@ -411,7 +411,7 @@ public class ComicsQuery {
     }
 
     public Builder addCreator(List<Integer> creatorIds) {
-      checkNull(creatorIds);
+      checkNotNull(creatorIds);
       creators.addAll(creatorIds);
       return this;
     }
@@ -422,7 +422,7 @@ public class ComicsQuery {
     }
 
     public Builder addCharacter(List<Integer> characterIds) {
-      checkNull(characterIds);
+      checkNotNull(characterIds);
       characters.addAll(characterIds);
       return this;
     }
@@ -433,7 +433,7 @@ public class ComicsQuery {
     }
 
     public Builder addSerie(List<Integer> serieIds) {
-      checkNull(serieIds);
+      checkNotNull(serieIds);
       series.addAll(serieIds);
       return this;
     }
@@ -444,7 +444,7 @@ public class ComicsQuery {
     }
 
     public Builder addEvent(List<Integer> eventIds) {
-      checkNull(eventIds);
+      checkNotNull(eventIds);
       events.addAll(eventIds);
       return this;
     }
@@ -455,7 +455,7 @@ public class ComicsQuery {
     }
 
     public Builder addStory(List<Integer> storyIds) {
-      checkNull(storyIds);
+      checkNotNull(storyIds);
       stories.addAll(storyIds);
       return this;
     }
@@ -466,7 +466,7 @@ public class ComicsQuery {
     }
 
     public Builder addSharedAppearance(List<Integer> characterIds) {
-      checkNull(characterIds);
+      checkNotNull(characterIds);
       sharedAppearances.addAll(characterIds);
       return this;
     }
@@ -477,7 +477,7 @@ public class ComicsQuery {
     }
 
     public Builder addCollaborator(List<Integer> creatorIds) {
-      checkNull(creatorIds);
+      checkNotNull(creatorIds);
       collaborators.addAll(creatorIds);
       return this;
     }
@@ -489,9 +489,7 @@ public class ComicsQuery {
     }
 
     public Builder withOrderBy(OrderBy orderBy) {
-      this.orderBy = orderBy;
-      this.orderByAscendant = true;
-      return this;
+      return withOrderBy(orderBy, true);
     }
 
     public Builder withLimit(int limit) {
@@ -538,7 +536,7 @@ public class ComicsQuery {
       }
     }
 
-    private void checkNull(Object object) {
+    private void checkNotNull(Object object) {
       if (object == null) {
         throw new IllegalArgumentException("the argument can not be null");
       }
