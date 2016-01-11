@@ -31,12 +31,23 @@ MarvelResponse<CharactersDto> all = characterApiClient.getAll(spider);
 
 ###Comics Api
 
-``ComicsApiClient`` contains all operations used to retrieve comics from the Marvel Api. If you want to perform complex queries you can use ``ComicsQuery`` object.
+``ComicApiClient`` contains all operations used to retrieve comics from the Marvel Api. If you want to perform complex queries you can use ``ComicsQuery`` object.
 
 ```java
 ComicApiClient comicApiClient = new ComicApiClient(marvelApiConfig);
 ComicsQuery query = ComicsQuery.Builder.create().withOffset(0).withLimit(10).build();
 MarvelResponse<ComicsDto> all = comicApiClient.getAll(query);
+```
+
+###Series Api
+
+``SeriesApiClient`` contains all operations used to retrieve series from the Marvel Api. If you want to perform complex queries you can use ``SeriesQuery`` object.
+
+```java
+SeriesApiClient seriesApiClient = new SeriesApiClient(marvelApiConfig);
+SeriesQuery query = SeriesQuery.Builder.create().withOffset(0).withLimit(10).build();
+MarvelResponse<SeriesCollectionDto> all = seriesApiClient.getAll(query);
+```
 
 Add it to your project
 ----------------------
