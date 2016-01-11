@@ -29,6 +29,15 @@ CharactersQuery spider = CharactersQuery.Builder.create().withOffset(0).withLimi
 MarvelResponse<CharactersDto> all = characterApiClient.getAll(spider);
 ```
 
+###Comics Api
+
+``ComicsApiClient`` contains all operations used to retrieve comics from the Marvel Api. If you want to perform complex queries you can use ``ComicsQuery`` object.
+
+```java
+ComicApiClient comicApiClient = new ComicApiClient(marvelApiConfig);
+ComicsQuery query = ComicsQuery.Builder.create().withOffset(0).withLimit(10).build();
+MarvelResponse<ComicsDto> all = comicApiClient.getAll(query);
+
 Add it to your project
 ----------------------
 
@@ -36,7 +45,7 @@ Include the library in your ``build.gradle``
 
 ```groovy
 dependencies{
-    compile 'com.karumi:marvelapiclient:0.0.1'
+    compile 'com.karumi:marvelapiclient:0.0.2'
 }
 ```
 
@@ -46,7 +55,7 @@ or to your ``pom.xml`` if you are using Maven
 <dependency>
     <groupId>com.karumi</groupId>
     <artifactId>marvelapiclient</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <type>jar</type>
 </dependency>
 
