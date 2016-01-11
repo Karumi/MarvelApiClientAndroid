@@ -15,13 +15,11 @@
 
 package com.karumi.marvelapiclient.model;
 
-import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CharactersDto extends MarvelCollection<CharacterDto> {
+public class ComicsDto extends MarvelCollection<ComicDto> {
 
-  public List<CharacterDto> getCharacters() {
+  public List<ComicDto> getComics() {
     return getResults();
   }
 
@@ -36,7 +34,7 @@ public class CharactersDto extends MarvelCollection<CharacterDto> {
         + ", count="
         + getCount()
         + ", characters="
-        + getCharacters().toString()
+        + getComics().toString()
         + '}';
   }
 }

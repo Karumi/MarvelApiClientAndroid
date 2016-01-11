@@ -13,30 +13,21 @@
  *   limitations under the License.
  */
 
-package com.karumi.marvelapiclient.model;
+package com.karumi.marvelapiclient;
 
-import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
-import java.util.List;
+import com.karumi.marvelapiclient.model.CharactersDto;
+import com.karumi.marvelapiclient.model.ComicsDto;
+import com.karumi.marvelapiclient.model.MarvelResponse;
+import java.util.Map;
+import retrofit.Call;
+import retrofit.http.GET;
+import retrofit.http.Path;
+import retrofit.http.QueryMap;
 
-public class CharactersDto extends MarvelCollection<CharacterDto> {
+interface ComicApiRest {
+  @GET("comics") Call<MarvelResponse<ComicsDto>> getComics(
+      @QueryMap Map<String, Object> comicFilter);
 
-  public List<CharacterDto> getCharacters() {
-    return getResults();
-  }
-
-  @Override public String toString() {
-    return "CharactersDto{"
-        + "offset="
-        + getOffset()
-        + ", limit="
-        + getLimit()
-        + ", total="
-        + getTotal()
-        + ", count="
-        + getCount()
-        + ", characters="
-        + getCharacters().toString()
-        + '}';
-  }
+  @GET("comics/{id}") Call<MarvelResponse<ComicsDto>> getComic(
+      @Path("id") String comicId);
 }

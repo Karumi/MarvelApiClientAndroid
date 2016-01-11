@@ -16,27 +16,21 @@
 package com.karumi.marvelapiclient.model;
 
 import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
-import java.util.List;
 
-public class CharactersDto extends MarvelCollection<CharacterDto> {
+public class TextObject {
+  @SerializedName("type") private String type;
+  @SerializedName("language") private String language;
+  @SerializedName("text") private String text;
 
-  public List<CharacterDto> getCharacters() {
-    return getResults();
+  public String getType() {
+    return type;
   }
 
-  @Override public String toString() {
-    return "CharactersDto{"
-        + "offset="
-        + getOffset()
-        + ", limit="
-        + getLimit()
-        + ", total="
-        + getTotal()
-        + ", count="
-        + getCount()
-        + ", characters="
-        + getCharacters().toString()
-        + '}';
+  public String getLanguage() {
+    return language;
+  }
+
+  public String getText() {
+    return text;
   }
 }

@@ -15,28 +15,17 @@
 
 package com.karumi.marvelapiclient.model;
 
-import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
-import java.util.List;
+public enum OrderBy {
+  NAME("name"),
+  MODIFIED("modified");
 
-public class CharactersDto extends MarvelCollection<CharacterDto> {
+  private final String orderBy;
 
-  public List<CharacterDto> getCharacters() {
-    return getResults();
+  private OrderBy(final String orderBy) {
+    this.orderBy = orderBy;
   }
 
   @Override public String toString() {
-    return "CharactersDto{"
-        + "offset="
-        + getOffset()
-        + ", limit="
-        + getLimit()
-        + ", total="
-        + getTotal()
-        + ", count="
-        + getCount()
-        + ", characters="
-        + getCharacters().toString()
-        + '}';
+    return orderBy;
   }
 }

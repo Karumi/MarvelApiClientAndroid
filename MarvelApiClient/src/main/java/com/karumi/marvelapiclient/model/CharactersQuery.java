@@ -106,20 +106,6 @@ public class CharactersQuery {
     return returnValues;
   }
 
-  public enum OrderBy {
-    NAME("name"),
-    MODIFIED("modified");
-
-    private final String orderBy;
-
-    private OrderBy(final String orderBy) {
-      this.orderBy = orderBy;
-    }
-
-    @Override public String toString() {
-      return orderBy;
-    }
-  }
 
   public static class Builder {
     public final static int MAX_SIZE = 100;

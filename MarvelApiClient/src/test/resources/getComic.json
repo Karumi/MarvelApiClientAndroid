@@ -1,0 +1,123 @@
+{
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2015 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2015 MARVEL",
+  "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2015 MARVEL</a>",
+  "etag": "55122b303dfbc9fdfd12c080eded740b83354269",
+  "data": {
+    "offset": 0,
+    "limit": 20,
+    "total": 1,
+    "count": 1,
+    "results": [
+      {
+        "id": 42882,
+        "digitalId": 26110,
+        "title": "Lorna the Jungle Girl (1954) #6",
+        "issueNumber": 6,
+        "variantDescription": "variant",
+        "description": "description",
+        "modified": "2015-10-15T11:13:52-0400",
+        "isbn": "1",
+        "upc": "2",
+        "diamondCode": "5",
+        "ean": "3",
+        "issn": "4",
+        "format": "Comic",
+        "pageCount": 32,
+        "textObjects": [
+          {
+            "type": "issue_solicit_text",
+            "language": "en-us",
+            "text": "From the award-winning team that brought you Daredevil and Spider-Woman comes another explosive chapter of one of the most controversial creator-owned comics being published today. Scarlet has declared war on a city that refuses to stop the corruption that is strangling it from within, and now she&#39;ll be forced to make her most dangerous move yet: letting them capture her."
+          }
+        ],
+        "resourceURI": "http://gateway.marvel.com/v1/public/comics/42882",
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/comics/issue/42882/lorna_the_jungle_girl_1954_6?utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          },
+          {
+            "type": "reader",
+            "url": "http://marvel.com/digitalcomics/view.htm?iid=26110&utm_campaign=apiRef&utm_source=838a08a2f4c39fa3fd218b1b2d43f19a"
+          }
+        ],
+        "series": {
+          "resourceURI": "http://gateway.marvel.com/v1/public/series/16355",
+          "name": "Lorna the Jungle Girl (1954 - 1957)"
+        },
+        "variants": [],
+        "collections": [],
+        "collectedIssues": [],
+        "dates": [
+          {
+            "type": "onsaleDate",
+            "date": "2054-03-01T00:00:00-0500"
+          },
+          {
+            "type": "focDate",
+            "date": "-0001-11-30T00:00:00-0500"
+          },
+          {
+            "type": "unlimitedDate",
+            "date": "2012-04-13T00:00:00-0400"
+          }
+        ],
+        "prices": [
+          {
+            "type": "printPrice",
+            "price": 0
+          }
+        ],
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/40/50b4fc783d30f",
+          "extension": "jpg"
+        },
+        "images": [
+          {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/40/50b4fc783d30f",
+            "extension": "jpg"
+          }
+        ],
+        "creators": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/41530/creators",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/creators/4430",
+              "name": "Jeff Youngquist",
+              "role": "editor"
+            }
+          ],
+          "returned": 1
+        },
+        "characters": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/42882/characters",
+          "items": [],
+          "returned": 0
+        },
+        "stories": {
+          "available": 1,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/42882/stories",
+          "items": [
+            {
+              "resourceURI": "http://gateway.marvel.com/v1/public/stories/106292",
+              "name": "cover from Lorna the Jungle Girl #6",
+              "type": "cover"
+            }
+          ],
+          "returned": 1
+        },
+        "events": {
+          "available": 0,
+          "collectionURI": "http://gateway.marvel.com/v1/public/comics/42882/events",
+          "items": [],
+          "returned": 0
+        }
+      }
+    ]
+  }
+}
