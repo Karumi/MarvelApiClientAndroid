@@ -17,6 +17,7 @@ package com.karumi.marvelapiclient;
 
 import com.karumi.marvelapiclient.model.CharacterResourceDto;
 import com.karumi.marvelapiclient.model.ComicResourceDto;
+import com.karumi.marvelapiclient.model.ComicsQuery;
 import com.karumi.marvelapiclient.model.CreatorResourceDto;
 import com.karumi.marvelapiclient.model.EventResourceDto;
 import com.karumi.marvelapiclient.model.Format;
@@ -25,8 +26,8 @@ import com.karumi.marvelapiclient.model.MarvelResources;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.karumi.marvelapiclient.model.MarvelUrl;
 import com.karumi.marvelapiclient.model.OrderBy;
-import com.karumi.marvelapiclient.model.SeriesDto;
 import com.karumi.marvelapiclient.model.SeriesCollectionDto;
+import com.karumi.marvelapiclient.model.SeriesDto;
 import com.karumi.marvelapiclient.model.SeriesQuery;
 import com.karumi.marvelapiclient.model.StoryResourceDto;
 import java.util.ArrayList;
@@ -66,6 +67,18 @@ public class SeriesApiClientTest extends ApiClientTest {
   private static final String ANY_NOT_FOUND_ID = "1234";
   private static final String ANY_SERIE_ID = "123456";
   public static final String EVENTS_REQUEST = "1,2";
+  private static final int ANY_SERIE = 1;
+  private static final int ANY_SHARED_APPEARANCES = 4;
+  public static final String COLLABORATORS_REQUEST = "1,2";
+  private static final String LAST_WEEK_REQUEST = "last%20week";
+  private static final String ANY_DATE_RANGE = "2015-01-09T22:10:45-0800";
+
+  private static final int ANY_ISSUE_NUMBER = 1;
+  private static final String ANY_DIAMOND_CODE = "any";
+  private static final String ANY_UPC = "1";
+  private static final String ANY_ISBN = "1";
+  private static final String ANY_EAN = "1";
+  private static final String ANY_ISSN = "1";
 
   @Test public void shouldSendOffsetAsLimitAsParamsWhenGetAll() throws Exception {
     SeriesApiClient seriesApiClient = givenSeriesApiClient();
@@ -184,6 +197,77 @@ public class SeriesApiClientTest extends ApiClientTest {
     assertIs5Ronnin(response);
   }
 
+  @Test public void shouldSendGetComicBySeriesRequestToTheCorrectEndpoint() throws Exception {
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
+    enqueueMockResponse("getComics.json");
+
+    ComicsQuery query = ComicsQuery.Builder.create()
+        .withFormat(Format.COMIC)
+        .withFormatType(ComicsQuery.FormatType.COLLECTION)
+        .withNoVariants()
+        .withDateDescriptor(ComicsQuery.DateDescriptor.LAST_WEEK)
+        .withDateRange(getAnyDate())
+        .withTitle(ANY_TITLE)
+        .withTitleStartsWith(ANY_START_TITLE)
+        .withStartYear(ANY_START_YEAR)
+        .withIssueNumber(ANY_ISSUE_NUMBER)
+        .withDiamondCode(ANY_DIAMOND_CODE)
+        .withUpc(ANY_UPC)
+        .withIsbn(ANY_ISBN)
+        .withEan(ANY_EAN)
+        .withIssn(ANY_ISSN)
+        .withHasDigitalIssue()
+        .withLimit(ANY_LIMIT)
+        .withOffset(ANY_OFFSET)
+        .addCreator(ANY_CREATOR)
+        .addCharacter(ANY_CHARACTER)
+        .withModifiedSince(getAnyDate())
+        .withOrderBy(OrderBy.NAME, false)
+        .addEvent(getAnyEvents())
+        .addSerie(ANY_SERIE)
+        .addStory(ANY_STORY)
+        .addSharedAppearance(ANY_SHARED_APPEARANCES)
+        .addCollaborator(getAnyCollaborators())
+        .build();
+
+    seriesApiClient.getComicsBySerie(ANY_SERIE_ID, query);
+
+    assertRequestSentToContains("series/" + ANY_SERIE_ID, "format=" + Format.COMIC.toString(),
+        "formatType=" + ComicsQuery.FormatType.COLLECTION, "noVariants=true",
+        "dateDescriptor=" + LAST_WEEK_REQUEST, "dateRange=" + ANY_DATE_RANGE,
+        "startYear=" + ANY_START_YEAR, "issueNumber=" + ANY_ISSUE_NUMBER,
+        "diamondCode=" + ANY_DIAMOND_CODE, "upc=" + ANY_UPC, "isbn=" + ANY_ISBN, "ean=" + ANY_EAN,
+        "issn=" + ANY_ISSN, "hasDigitalIssue=true", "creators=" + ANY_CREATOR,
+        "characters=" + ANY_CHARACTER, "offset=" + ANY_OFFSET,
+        "appearances=" + ANY_SHARED_APPEARANCES, "collaborators=" + COLLABORATORS_REQUEST,
+        "limit=" + ANY_LIMIT, "title=" + ANY_TITLE, "titleStartsWith=" + ANY_START_TITLE,
+        "modifiedSince=" + ANY_MODIFIED_SINCE, "orderBy=" + ORDER_NAME_DESCEDANT_VALUE,
+        "events=" + EVENTS_REQUEST, "series=" + ANY_SERIE, "stories=" + ANY_STORY);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenCallGetComicBySerieAndLimitIsZero() throws Exception {
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
+    enqueueMockResponse();
+
+    seriesApiClient.getComicsBySerie(ANY_SERIE_ID, ANY_OFFSET, INVALID_LIMIT);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void shouldThrowExceptionWhenCallGetComicBySerieAndSerieIdIsEmpty() throws Exception {
+    SeriesApiClient seriesApiClient = givenSeriesApiClient();
+    enqueueMockResponse();
+
+    seriesApiClient.getComicsBySerie("", ANY_OFFSET, INVALID_LIMIT);
+  }
+
+  private List<Integer> getAnyCollaborators() {
+    List<Integer> collaborators = new ArrayList<>();
+    collaborators.add(ANY_COLLABORATOR_1);
+    collaborators.add(ANY_COLLABORATOR_2);
+    return collaborators;
+  }
+
   private List<Integer> getAnyEvents() {
     List<Integer> events = new ArrayList<>();
     events.add(ANY_EVENT_1);
@@ -204,7 +288,8 @@ public class SeriesApiClientTest extends ApiClientTest {
     return new SeriesApiClient(marvelApiConfig);
   }
 
-  private void assertGetAllSeriesResponseIsProperlyParsed(MarvelResponse<SeriesCollectionDto> series) {
+  private void assertGetAllSeriesResponseIsProperlyParsed(
+      MarvelResponse<SeriesCollectionDto> series) {
     SeriesCollectionDto seriesCollectionDto = series.getResponse();
     assertEquals(10, seriesCollectionDto.getCount());
     assertEquals(10, seriesCollectionDto.getLimit());
