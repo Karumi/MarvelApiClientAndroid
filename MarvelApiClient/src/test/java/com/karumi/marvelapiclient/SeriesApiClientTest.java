@@ -66,10 +66,10 @@ public class SeriesApiClientTest extends ApiClientTest {
   private static final String INVALID_SERIES_ID = "";
   private static final String ANY_NOT_FOUND_ID = "1234";
   private static final String ANY_SERIE_ID = "123456";
-  public static final String EVENTS_REQUEST = "1,2";
+  private static final String EVENTS_REQUEST = "1,2";
   private static final int ANY_SERIE = 1;
   private static final int ANY_SHARED_APPEARANCES = 4;
-  public static final String COLLABORATORS_REQUEST = "1,2";
+  private static final String COLLABORATORS_REQUEST = "1,2";
   private static final String LAST_WEEK_REQUEST = "last%20week";
   private static final String ANY_DATE_RANGE = "2015-01-09T22:10:45-0800";
 
@@ -230,7 +230,7 @@ public class SeriesApiClientTest extends ApiClientTest {
         .addCollaborator(getAnyCollaborators())
         .build();
 
-    seriesApiClient.getComicsBySerie(ANY_SERIE_ID, query);
+    seriesApiClient.getComicsBySeries(ANY_SERIE_ID, query);
 
     assertRequestSentToContains("series/" + ANY_SERIE_ID, "format=" + Format.COMIC.toString(),
         "formatType=" + ComicsQuery.FormatType.COLLECTION, "noVariants=true",
@@ -250,7 +250,7 @@ public class SeriesApiClientTest extends ApiClientTest {
     SeriesApiClient seriesApiClient = givenSeriesApiClient();
     enqueueMockResponse();
 
-    seriesApiClient.getComicsBySerie(ANY_SERIE_ID, ANY_OFFSET, INVALID_LIMIT);
+    seriesApiClient.getComicsBySeries(ANY_SERIE_ID, ANY_OFFSET, INVALID_LIMIT);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -258,7 +258,7 @@ public class SeriesApiClientTest extends ApiClientTest {
     SeriesApiClient seriesApiClient = givenSeriesApiClient();
     enqueueMockResponse();
 
-    seriesApiClient.getComicsBySerie("", ANY_OFFSET, INVALID_LIMIT);
+    seriesApiClient.getComicsBySeries("", ANY_OFFSET, INVALID_LIMIT);
   }
 
   private List<Integer> getAnyCollaborators() {

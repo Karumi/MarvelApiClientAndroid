@@ -68,13 +68,13 @@ public final class SeriesApiClient extends MarvelApiClient {
     }
   }
 
-  public MarvelResponse<ComicsDto> getComicsBySerie(String seriesId, int offset, int limit)
+  public MarvelResponse<ComicsDto> getComicsBySeries(String seriesId, int offset, int limit)
       throws MarvelApiException {
     ComicsQuery query = ComicsQuery.Builder.create().withOffset(offset).withLimit(limit).build();
-    return getComicsBySerie(seriesId, query);
+    return getComicsBySeries(seriesId, query);
   }
 
-  public MarvelResponse<ComicsDto> getComicsBySerie(String seriesId, ComicsQuery comicsQuery)
+  public MarvelResponse<ComicsDto> getComicsBySeries(String seriesId, ComicsQuery comicsQuery)
       throws MarvelApiException {
     if (seriesId == null || seriesId.isEmpty()) {
       throw new IllegalArgumentException("The seriesId must not be null or empty");
