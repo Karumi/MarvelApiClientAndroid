@@ -15,6 +15,7 @@
 
 package com.karumi.marvelapiclient;
 
+import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.karumi.marvelapiclient.model.SeriesCollectionDto;
 import java.util.Map;
@@ -27,5 +28,9 @@ interface SeriesApiRest {
   @GET("series") Call<MarvelResponse<SeriesCollectionDto>> getSeries(
       @QueryMap Map<String, Object> seriesFilter);
 
-  @GET("series/{id}") Call<MarvelResponse<SeriesCollectionDto>> getSerie(@Path("id") String serieId);
+  @GET("series/{id}") Call<MarvelResponse<SeriesCollectionDto>> getSerie(
+      @Path("id") String serieId);
+
+  @GET("series/{id}/comics") Call<MarvelResponse<ComicsDto>> getComicsBySerie(
+      @Path("id") String serieId, @QueryMap Map<String, Object> comicFilter);
 }

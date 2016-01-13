@@ -76,8 +76,8 @@ public class ComicApiClientTest extends ApiClientTest {
   private static final String INVALID_COMIC_ID = "";
   private static final String ANY_NOT_FOUND_ID = "1234";
   private static final String ANY_COMIC_ID = "123456";
-  public static final String EVENTS_REQUEST = "1,2";
-  public static final String COLLABORATORS_REQUEST = "1,2";
+  private static final String EVENTS_REQUEST = "1,2";
+  private static final String COLLABORATORS_REQUEST = "1,2";
   private static final String LAST_WEEK_REQUEST = "last%20week";
 
   @Test public void shouldRequestComicsByOffsetAndLimitWithAsParams() throws Exception {

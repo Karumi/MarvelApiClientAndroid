@@ -15,6 +15,8 @@
 
 package com.karumi.marvelapiclient;
 
+import com.karumi.marvelapiclient.model.ComicsDto;
+import com.karumi.marvelapiclient.model.ComicsQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import com.karumi.marvelapiclient.model.SeriesCollectionDto;
 import com.karumi.marvelapiclient.model.SeriesDto;
@@ -64,5 +66,24 @@ public final class SeriesApiClient extends MarvelApiClient {
     } else {
       throw new MarvelApiException("Series not found", null);
     }
+  }
+
+  public MarvelResponse<ComicsDto> getComicsBySeries(String seriesId, int offset, int limit)
+      throws MarvelApiException {
+    ComicsQuery query = ComicsQuery.Builder.create().withOffset(offset).withLimit(limit).build();
+    return getComicsBySeries(seriesId, query);
+  }
+
+  public MarvelResponse<ComicsDto> getComicsBySeries(String seriesId, ComicsQuery comicsQuery)
+      throws MarvelApiException {
+    if (seriesId == null || seriesId.isEmpty()) {
+      throw new IllegalArgumentException("The seriesId must not be null or empty");
+    }
+    SeriesApiRest api = getApi(SeriesApiRest.class);
+
+    Map<String, Object> queryMap = comicsQuery.toMap();
+    Call<MarvelResponse<ComicsDto>> call = api.getComicsBySerie(seriesId, queryMap);
+
+    return execute(call);
   }
 }
