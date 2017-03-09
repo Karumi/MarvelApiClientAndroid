@@ -56,7 +56,7 @@ Include the library in your ``build.gradle``
 
 ```groovy
 dependencies{
-    compile 'com.karumi:marvelapiclient:0.0.2'
+    compile 'com.karumi:marvelapiclient:0.0.4'
 }
 ```
 
@@ -66,7 +66,7 @@ or to your ``pom.xml`` if you are using Maven
 <dependency>
     <groupId>com.karumi</groupId>
     <artifactId>marvelapiclient</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.4</version>
     <type>jar</type>
 </dependency>
 
