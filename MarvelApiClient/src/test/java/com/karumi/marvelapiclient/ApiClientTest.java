@@ -16,20 +16,14 @@
 package com.karumi.marvelapiclient;
 
 import com.karumi.marvelapiclient.model.MarvelResponse;
-import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.MockWebServer;
-import com.squareup.okhttp.mockwebserver.RecordedRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.mockito.MockitoAnnotations;
-
-import static junit.framework.Assert.assertEquals;
-import static org.hamcrest.core.StringContains.containsString;
 
 public class ApiClientTest {
   private static final String FILE_ENCODING = "UTF-8";
