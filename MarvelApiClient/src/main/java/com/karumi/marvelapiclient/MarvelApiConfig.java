@@ -15,10 +15,12 @@
 
 package com.karumi.marvelapiclient;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.logging.HttpLoggingInterceptor;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import java.util.List;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Api client for access to Marvel Api.
@@ -95,34 +97,27 @@ public class MarvelApiConfig {
 
     public MarvelApiConfig build() {
       if (retrofit == null) {
-        retrofit = createDefaultRetrofit(baseUrl, debug);
+        retrofit = buildRetrofit();
       }
-
-      addKeysToParams(retrofit, publicKey, privateKey, timeProvider);
 
       return new MarvelApiConfig(publicKey, privateKey, retrofit, debug);
     }
 
-    private void addKeysToParams(Retrofit retrofit, String publicKey, String privateKey,
-        TimeProvider timeProvider) {
-      OkHttpClient client = retrofit.client();
-      client.interceptors().add(new AuthInterceptor(publicKey, privateKey, timeProvider));
-    }
-
-    private Retrofit createDefaultRetrofit(String baseUrl, boolean debug) {
+    private Retrofit buildRetrofit() {
       OkHttpClient client = new OkHttpClient();
+      List<Interceptor> interceptors = client.interceptors();
       if (debug) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        client.interceptors().add(interceptor);
+        interceptors.add(interceptor);
       }
 
-      Retrofit retrofit = new Retrofit.Builder().baseUrl(baseUrl)
+      interceptors.add(new AuthInterceptor(publicKey, privateKey, timeProvider));
+
+      return new Retrofit.Builder().baseUrl(baseUrl)
           .client(client)
           .addConverterFactory(GsonConverterFactory.create())
           .build();
-
-      return retrofit;
     }
   }
 }

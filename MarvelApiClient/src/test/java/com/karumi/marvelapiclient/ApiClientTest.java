@@ -15,18 +15,21 @@
 
 package com.karumi.marvelapiclient;
 
+import com.karumi.marvelapiclient.extensions.FileExtensions;
 import com.karumi.marvelapiclient.model.MarvelResponse;
+import com.squareup.okhttp.mockwebserver.MockResponse;
 import com.squareup.okhttp.mockwebserver.MockWebServer;
-import java.io.File;
+import com.squareup.okhttp.mockwebserver.RecordedRequest;
 import java.io.IOException;
-import java.util.List;
-import org.apache.commons.io.FileUtils;
+import org.hamcrest.core.StringContains;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.mockito.MockitoAnnotations;
 
+import static org.junit.Assert.assertEquals;
+
 public class ApiClientTest {
-  private static final String FILE_ENCODING = "UTF-8";
   protected static final String ANY_TIME_ZONE = "PST";
   private static final int OK_CODE = 200;
 
@@ -48,7 +51,7 @@ public class ApiClientTest {
   }
 
   protected void enqueueMockResponse(int code) throws IOException {
-    enqueueMockResponse(OK_CODE, "{}");
+    enqueueMockResponse(code, "{}");
   }
 
   protected void enqueueMockResponse(int code, String response) throws IOException {
@@ -59,10 +62,11 @@ public class ApiClientTest {
   }
 
   protected void enqueueMockResponse(String fileName) throws IOException {
-    MockResponse mockResponse = new MockResponse();
-    String fileContent = getContentFromFile(fileName);
-    mockResponse.setBody(fileContent);
-    server.enqueue(mockResponse);
+    String body = FileExtensions.getStringFromFile(getClass(), fileName);
+    MockResponse response = new MockResponse();
+    response.setResponseCode(OK_CODE);
+    response.setBody(body);
+    server.enqueue(response);
   }
 
   protected void assertRequestSentTo(String url) throws InterruptedException {
@@ -74,7 +78,7 @@ public class ApiClientTest {
     RecordedRequest request = server.takeRequest();
 
     for (String path : paths) {
-      Assert.assertThat(request.getPath(), containsString(path));
+      Assert.assertThat(request.getPath(), StringContains.containsString(path));
     }
   }
 
@@ -90,16 +94,5 @@ public class ApiClientTest {
 
   protected String getBaseEndpoint() {
     return server.getUrl("/").toString();
-  }
-
-  private String getContentFromFile(String fileName) throws IOException {
-    fileName = getClass().getResource("/" + fileName).getFile();
-    File file = new File(fileName);
-    List<String> lines = FileUtils.readLines(file, FILE_ENCODING);
-    StringBuilder stringBuilder = new StringBuilder();
-    for (String line : lines) {
-      stringBuilder.append(line);
-    }
-    return stringBuilder.toString();
   }
 }

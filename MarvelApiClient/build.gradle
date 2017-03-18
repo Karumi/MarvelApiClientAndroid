@@ -99,16 +99,24 @@ uploadArchives {
   }
 }
 
+sourceSets {
+  test {
+    output.resourcesDir = "build/classes/test/resources"
+  }
+}
 
 dependencies {
   def okHttpVersion = "3.6.0"
+  def retrofitVersion = "2.2.0"
 
-  testCompile "junit:junit:4.12"
+  testCompile group: 'junit', name: 'junit', version: '4.12'
   testCompile "org.mockito:mockito-all:1.9.5"
   testCompile "com.squareup.okhttp:mockwebserver:2.7.5"
   testCompile "commons-io:commons-io:2.5"
 
   compile "com.squareup.okhttp3:okhttp:$okHttpVersion"
-  compile "com.squareup.retrofit2:retrofit:2.2.0"
   compile "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+  compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+  compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+  compile "com.google.code.gson:gson:2.8.0"
 }

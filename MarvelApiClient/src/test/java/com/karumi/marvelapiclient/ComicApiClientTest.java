@@ -38,8 +38,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import org.junit.Test;
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -228,7 +228,6 @@ public class ComicApiClientTest extends ApiClientTest {
   }
 
   private ComicApiClient givenComicApiClient() {
-
     Retrofit retrofit = new Retrofit.Builder().baseUrl(getBaseEndpoint())
         .addConverterFactory(GsonConverterFactory.create())
         .build();

@@ -45,5 +45,4 @@ public class MarvelCollection<T> {
   protected List<T> getResults() {
     return results;
   }
-
 }

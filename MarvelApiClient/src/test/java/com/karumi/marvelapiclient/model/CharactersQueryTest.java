@@ -38,7 +38,7 @@ public class CharactersQueryTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
-     public void shouldThrowExceptionWhenAddNullComics() throws Exception {
+  public void shouldThrowExceptionWhenAddNullComics() throws Exception {
     CharactersQuery.Builder.create().addComics(null).build();
   }
 

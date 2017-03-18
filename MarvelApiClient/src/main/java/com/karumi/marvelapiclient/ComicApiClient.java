@@ -20,7 +20,7 @@ import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.ComicsQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import java.util.Map;
-import retrofit.Call;
+import retrofit2.Call;
 
 /**
  * Retrieves Comics information given a  {@link ComicsQuery} or some simple params like the
