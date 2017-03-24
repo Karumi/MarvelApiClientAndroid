@@ -20,7 +20,7 @@ import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.CharactersQuery;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import java.util.Map;
-import retrofit.Call;
+import retrofit2.Call;
 
 /**
  * Retrieves Character information given a  {@link CharactersQuery} or some simple params like the

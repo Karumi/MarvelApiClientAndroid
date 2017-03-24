@@ -15,14 +15,13 @@
 
 package com.karumi.marvelapiclient;
 
-import com.karumi.marvelapiclient.model.CharactersDto;
 import com.karumi.marvelapiclient.model.ComicsDto;
 import com.karumi.marvelapiclient.model.MarvelResponse;
 import java.util.Map;
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.Path;
-import retrofit.http.QueryMap;
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 interface ComicApiRest {
   @GET("comics") Call<MarvelResponse<ComicsDto>> getComics(

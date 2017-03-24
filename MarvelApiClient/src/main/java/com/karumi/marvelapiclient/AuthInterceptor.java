@@ -15,11 +15,11 @@
 
 package com.karumi.marvelapiclient;
 
-import com.squareup.okhttp.HttpUrl;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
 import java.io.IOException;
+import okhttp3.HttpUrl;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
 
 class AuthInterceptor implements Interceptor {
   private static final String TIMESTAMP_KEY = "ts";
@@ -46,7 +46,7 @@ class AuthInterceptor implements Interceptor {
       e.printStackTrace();
     }
     Request request = chain.request();
-    HttpUrl url = request.httpUrl()
+    HttpUrl url = request.url()
         .newBuilder()
         .addQueryParameter(TIMESTAMP_KEY, timestamp)
         .addQueryParameter(APIKEY_KEY, publicKey)

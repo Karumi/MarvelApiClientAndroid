@@ -22,7 +22,7 @@ import com.karumi.marvelapiclient.model.SeriesCollectionDto;
 import com.karumi.marvelapiclient.model.SeriesDto;
 import com.karumi.marvelapiclient.model.SeriesQuery;
 import java.util.Map;
-import retrofit.Call;
+import retrofit2.Call;
 
 /**
  * Retrieves Series information given a  {@link SeriesQuery} or some simple params like the

@@ -17,8 +17,8 @@ package com.karumi.marvelapiclient;
 
 import com.google.gson.Gson;
 import java.io.IOException;
-import retrofit.Call;
-import retrofit.Response;
+import retrofit2.Call;
+import retrofit2.Response;
 
 class MarvelApiClient {
   private static final int INVALID_AUTH_CODE = 401;
@@ -40,7 +40,7 @@ class MarvelApiClient {
     } catch (IOException e) {
       throw new MarvelApiException("Network error", e);
     }
-    if (response.isSuccess()) {
+    if (response.isSuccessful()) {
       return response.body();
     } else {
       parseError(response);
