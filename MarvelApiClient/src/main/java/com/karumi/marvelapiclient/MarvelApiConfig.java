@@ -12,13 +12,9 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  */
-
 package com.karumi.marvelapiclient;
 
-import java.util.List;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -27,97 +23,93 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class MarvelApiConfig {
 
-  private static MarvelApiConfig singleton;
-  private final String publicKey;
-  private final String privateKey;
-  private final boolean debug;
-  private final Retrofit retrofit;
-
-  MarvelApiConfig(String publicKey, String privateKey, Retrofit retrofit, boolean debug) {
-    this.publicKey = publicKey;
-    this.privateKey = privateKey;
-    this.retrofit = retrofit;
-    this.debug = debug;
-  }
-
-  public static MarvelApiConfig with(String publicKey, String privateKey) {
-    if (singleton == null) {
-      singleton = new Builder(publicKey, privateKey).build();
-    }
-    return singleton;
-  }
-
-  public Retrofit getRetrofit() {
-    return retrofit;
-  }
-
-  /**
-   * Fluent API for creating {@link MarvelApiConfig} instances.
-   */
-  @SuppressWarnings("UnusedDeclaration") public static class Builder {
-
-    private static final String MARVEL_API_BASE_URL = "http://gateway.marvel.com/v1/public/";
-    private final String privateKey;
+    private static MarvelApiConfig singleton;
     private final String publicKey;
-    private boolean debug;
-    private Retrofit retrofit;
-    private String baseUrl = MARVEL_API_BASE_URL;
-    private TimeProvider timeProvider = new TimeProvider();
+    private final String privateKey;
+    private final boolean debug;
+    private final Retrofit retrofit;
 
-    public Builder(String publicKey, String privateKey) {
-      if (publicKey == null) {
-        throw new IllegalArgumentException("publicKey must not be null.");
-      }
-
-      if (privateKey == null) {
-        throw new IllegalArgumentException("privateKey must not be null.");
-      }
-
-      this.publicKey = publicKey;
-      this.privateKey = privateKey;
+    MarvelApiConfig(String publicKey, String privateKey, Retrofit retrofit, boolean debug) {
+        this.publicKey = publicKey;
+        this.privateKey = privateKey;
+        this.retrofit = retrofit;
+        this.debug = debug;
     }
 
-    public Builder debug() {
-      this.debug = true;
-      return this;
+    public static MarvelApiConfig with(String publicKey, String privateKey) {
+        if (singleton == null) {
+            singleton = new Builder(publicKey, privateKey).build();
+        }
+        return singleton;
     }
 
-    public Builder baseUrl(String url) {
-      this.baseUrl = url;
-      return this;
+    public Retrofit getRetrofit() {
+        return retrofit;
     }
 
-    public Builder retrofit(Retrofit retrofit) {
-      if (retrofit == null) {
-        throw new IllegalArgumentException("retrofit must not be null.");
-      }
-      this.retrofit = retrofit;
-      return this;
+    /**
+     * Fluent API for creating {@link MarvelApiConfig} instances.
+     */
+    @SuppressWarnings("UnusedDeclaration")
+    public static class Builder {
+
+        private static final String MARVEL_API_BASE_URL = "http://gateway.marvel.com/v1/public/";
+        private final String privateKey;
+        private final String publicKey;
+        private boolean debug;
+        private Retrofit retrofit;
+        private String baseUrl = MARVEL_API_BASE_URL;
+        private TimeProvider timeProvider = new TimeProvider();
+
+        public Builder(String publicKey, String privateKey) {
+            if (publicKey == null) {
+                throw new IllegalArgumentException("publicKey must not be null.");
+            }
+
+            if (privateKey == null) {
+                throw new IllegalArgumentException("privateKey must not be null.");
+            }
+
+            this.publicKey = publicKey;
+            this.privateKey = privateKey;
+        }
+
+        public Builder debug() {
+            this.debug = true;
+            return this;
+        }
+
+        public Builder baseUrl(String url) {
+            this.baseUrl = url;
+            return this;
+        }
+
+        public Builder retrofit(Retrofit retrofit) {
+            if (retrofit == null) {
+                throw new IllegalArgumentException("retrofit must not be null.");
+            }
+            this.retrofit = retrofit;
+            return this;
+        }
+
+        public MarvelApiConfig build() {
+            if (retrofit == null) {
+                retrofit = buildRetrofit();
+            }
+
+            return new MarvelApiConfig(publicKey, privateKey, retrofit, debug);
+        }
+
+        private Retrofit buildRetrofit() {
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(new AuthInterceptor(publicKey, privateKey, timeProvider))
+                    .build();
+
+            return new Retrofit.Builder().baseUrl(baseUrl)
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
     }
-
-    public MarvelApiConfig build() {
-      if (retrofit == null) {
-        retrofit = buildRetrofit();
-      }
-
-      return new MarvelApiConfig(publicKey, privateKey, retrofit, debug);
-    }
-
-    private Retrofit buildRetrofit() {
-      OkHttpClient client = new OkHttpClient();
-      List<Interceptor> interceptors = client.interceptors();
-      if (debug) {
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        interceptors.add(interceptor);
-      }
-
-      interceptors.add(new AuthInterceptor(publicKey, privateKey, timeProvider));
-
-      return new Retrofit.Builder().baseUrl(baseUrl)
-          .client(client)
-          .addConverterFactory(GsonConverterFactory.create())
-          .build();
-    }
-  }
 }
