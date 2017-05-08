@@ -15,8 +15,6 @@
 
 package com.karumi.marvelapiclient;
 
-import java.util.List;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -104,16 +102,16 @@ public class MarvelApiConfig {
     }
 
     private Retrofit buildRetrofit() {
-      OkHttpClient client = new OkHttpClient();
-      List<Interceptor> interceptors = client.interceptors();
+      OkHttpClient.Builder builder = new OkHttpClient.Builder()
+        .addInterceptor(new AuthInterceptor(publicKey, privateKey, timeProvider));
       if (debug) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        interceptors.add(interceptor);
+        builder.addInterceptor(interceptor);
       }
 
-      interceptors.add(new AuthInterceptor(publicKey, privateKey, timeProvider));
-
+      OkHttpClient client = builder.build();
+      
       return new Retrofit.Builder().baseUrl(baseUrl)
           .client(client)
           .addConverterFactory(GsonConverterFactory.create())
