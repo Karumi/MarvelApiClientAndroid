@@ -19,7 +19,7 @@ MarvelApiConfig marvelApiConfig = new MarvelApiConfig.Builder(publicKey, private
 
 Once you have configured your Marvel api, you can use this object to obtain information from the Marvel Api.
 
-###Characters Api
+### Characters Api
 
 ``CharacterApiClient`` contains all operations used to retrieve characters from the Marvel Api. If you want to perform complex queries you can use ``CharactersQuery`` object.
 
@@ -29,7 +29,7 @@ CharactersQuery spider = CharactersQuery.Builder.create().withOffset(0).withLimi
 MarvelResponse<CharactersDto> all = characterApiClient.getAll(spider);
 ```
 
-###Comics Api
+### Comics Api
 
 ``ComicApiClient`` contains all operations used to retrieve comics from the Marvel Api. If you want to perform complex queries you can use ``ComicsQuery`` object.
 
@@ -39,7 +39,7 @@ ComicsQuery query = ComicsQuery.Builder.create().withOffset(0).withLimit(10).bui
 MarvelResponse<ComicsDto> all = comicApiClient.getAll(query);
 ```
 
-###Series Api
+### Series Api
 
 ``SeriesApiClient`` contains all operations used to retrieve series from the Marvel Api. If you want to perform complex queries you can use ``SeriesQuery`` object.
 
@@ -56,7 +56,7 @@ Include the library in your ``build.gradle``
 
 ```groovy
 dependencies{
-    compile 'com.karumi:marvelapiclient:0.0.4'
+    compile 'com.karumi:marvelapiclient:1.0.1'
 }
 ```
 
@@ -66,7 +66,7 @@ or to your ``pom.xml`` if you are using Maven
 <dependency>
     <groupId>com.karumi</groupId>
     <artifactId>marvelapiclient</artifactId>
-    <version>0.0.4</version>
+    <version>1.0.1</version>
     <type>jar</type>
 </dependency>
 

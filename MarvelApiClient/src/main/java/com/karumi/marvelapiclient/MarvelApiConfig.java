@@ -54,7 +54,7 @@ public class MarvelApiConfig {
    */
   @SuppressWarnings("UnusedDeclaration") public static class Builder {
 
-    private static final String MARVEL_API_BASE_URL = "http://gateway.marvel.com/v1/public/";
+    private static final String MARVEL_API_BASE_URL = "https://gateway.marvel.com/v1/public/";
     private final String privateKey;
     private final String publicKey;
     private boolean debug;
